@@ -14,6 +14,7 @@ public class Paciente {
         this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
     }
+    public Paciente(){}
 
     public String getId() {
         return id;
