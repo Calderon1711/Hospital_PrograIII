@@ -26,7 +26,7 @@ public class Receta {
         this.id = id;
         this.detalleMedicamentos = FXCollections.observableArrayList();
     }
-/*
+
     //constructor sin medico y sin paciente los crea nuevos
     public Receta(String id, LocalDate fechaPrescripcion, LocalDate fechaRetiro, int estado) {
         this.id = id;
@@ -55,7 +55,7 @@ public class Receta {
         paciente = new Paciente();
         detalleMedicamentos = FXCollections.observableArrayList();
     }
-*/
+
 
     public Personal getPersonal() {
         return personal;
