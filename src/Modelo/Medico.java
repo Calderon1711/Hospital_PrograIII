@@ -3,6 +3,9 @@ package Modelo;
 public class Medico extends Personal{
     private String especialidad;
 
+    public Medico(){
+    }
+
     public Medico(String especialidad) {
         this.especialidad = especialidad;
     }
