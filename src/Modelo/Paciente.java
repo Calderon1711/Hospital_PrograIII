@@ -48,6 +48,11 @@ public class Paciente {
         this.telefono = telefono;
     }
 
+    public int getEdad(){
+        if(fechaNacimiento==null)return 0;
+        return Period.between(fechaNacimiento,LocalDate.now()).getYears();
+    }
+
     @Override
     public String toString() {
         return "Paciente{" +
