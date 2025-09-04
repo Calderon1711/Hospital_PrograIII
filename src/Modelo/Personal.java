@@ -12,22 +12,7 @@ public abstract class Personal {
     }
 
     public Personal() {
-    }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getClave() {
@@ -38,14 +23,31 @@ public abstract class Personal {
         this.clave = clave;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     @Override
     public String toString() {
-        return "Personal{" +
-                "nombre='" + nombre + '\'' +
-                ", id='" + id + '\'' +
-                ", clave='" + clave + '\'' +
+        return "Personal{" + '\n' +
+                "nombre='" + nombre + '\'' + '\n' +
+                ", id='" + id + '\'' + '\n' +
+                ", clave='" + clave + '\'' + '\n' +
                 '}';
     }
 
-    public abstract String getTipo();
+    //M.V.P
+    public abstract String tipo();
 }

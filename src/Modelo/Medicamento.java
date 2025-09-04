@@ -1,17 +1,27 @@
 package Modelo;
 
 public class Medicamento {
-   private String codigo;
-   private String nombre;
-   private String presentacion;
+    private String nombre;
+    private String codigo;
+    private String presentacion;
 
-   public Medicamento(String codigo, String nombre, String presentacion) {
-       this.codigo = codigo;
-       this.nombre = nombre;
-       this.presentacion = presentacion;
-   }
+    public Medicamento(String nombre, String presentacion, String codigo) {
+        this.nombre = nombre;
+        this.presentacion = presentacion;
+        this.codigo = codigo;
+    }
 
-   public Medicamento(){}
+    public Medicamento() {
+
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public String getCodigo() {
         return codigo;
@@ -29,18 +39,14 @@ public class Medicamento {
         this.presentacion = presentacion;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-       this.nombre = nombre;
-    }
     @Override
     public String toString() {
-       return "Medicamento{" +
-               "nombre='" + nombre + '\'' +
-               ", codigo='" + codigo + '\'' +
-               ", presentacion='" + presentacion + '\'' +
-               '}';
+        return "Medicamento{" +
+                "nombre='" + nombre + '\'' +
+                ", codigo='" + codigo + '\'' +
+                ", presentacion='" + presentacion + '\'' +
+                '}';
     }
+
 }
+

@@ -1,22 +1,21 @@
 package Modelo;
 
 public class DetalleMedicamento {
+    private Medicamento medicamento;
     private String idDetalle;
-    private String indicacion;
     private int cantidad;
     private int duracion;
-    private Medicamento medicamento;
+    private String indicacion;
 
-    //constructor normal
-    public DetalleMedicamento(Medicamento medicamento,String idDetalle, String indicacion, int cantidad, int duracion) {
+    public DetalleMedicamento(Medicamento medicamento, String idDetalle, int cantidad, int duracion, String indicacion) {
+        this.medicamento = medicamento;
         this.idDetalle = idDetalle;
-        this.indicacion = indicacion;
         this.cantidad = cantidad;
         this.duracion = duracion;
-        this.medicamento = medicamento;
+        this.indicacion = indicacion;
     }
 
-    //constructor con codigo de medicamento
+
     public DetalleMedicamento(String codigoMedicamento, String idDetalle, int cantidad, int duracion, String indicacion) {
         this.idDetalle = idDetalle;
         this.cantidad = cantidad;

@@ -1,11 +1,16 @@
 package Modelo;
 
-public class Farmaceuta extends Personal{
+public class Farmaceuta extends Personal {
+    public Farmaceuta(String nombre, String id, String clave) {
+        super(nombre, id, clave);
+    }
+
     public Farmaceuta() {
     }
 
-    public Farmaceuta(String nombre, String id, String clave) {
-        super(nombre, id, clave);
+    @Override
+    public String tipo() {
+        return "Farmaceuta";
     }
 
     @Override
@@ -15,10 +20,5 @@ public class Farmaceuta extends Personal{
                 ", id='" + id + '\'' +
                 ", clave='" + clave + '\'' +
                 '}';
-    }
-
-    @Override
-    public String getTipo() {
-        return "Farmaceuta";
     }
 }

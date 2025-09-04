@@ -1,18 +1,18 @@
 package Modelo;
 
-public class Medico extends Personal{
+public class Medico extends Personal {
     private String especialidad;
 
-    public Medico(){
+    public Medico(String nombre, String id, String clave, String especialidad) {
+        super(nombre, id, clave);
+        this.especialidad = especialidad;
     }
 
     public Medico(String especialidad) {
         this.especialidad = especialidad;
     }
 
-    public Medico(String nombre, String id, String clave, String especialidad) {
-        super(nombre, id, clave);
-        this.especialidad = especialidad;
+    public Medico() {
     }
 
     public String getEspecialidad() {
@@ -24,17 +24,17 @@ public class Medico extends Personal{
     }
 
     @Override
-    public String toString() {
-        return "Medico{" +
-                "especialidad='" + especialidad + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", id='" + id + '\'' +
-                ", clave='" + clave + '\'' +
-                '}';
+    public String tipo() {
+        return "Medico";
     }
 
     @Override
-    public String getTipo() {
-        return "Medico";
+    public String toString() {
+        return "Medico{" +
+                "nombre='" + nombre + '\'' +
+                ", especialidad='" + especialidad + '\'' +
+                ", id='" + id + '\'' +
+                ", clave='" + clave + '\'' +
+                '}';
     }
 }

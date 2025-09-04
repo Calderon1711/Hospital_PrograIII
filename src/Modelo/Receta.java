@@ -7,27 +7,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Receta {
-    private Personal personal; //una receta tiene un unico medico
-    private Paciente paciente; //y una receta tiene unico paciente
-    private LocalDate fechaPrescripcion;
-    private LocalDate fechaRetiro;
-    private int estado;// 1: Procesada - 2: Confeccionada - 3: Lista - 4: Entregada
-    private ObservableList<DetalleMedicamento> detalleMedicamentos;
-    private String id;
+    private Personal personal; //Una receta tiene un único médico que la prescribe.
+    private Paciente paciente; //Una receta tiene un único paciente a quién se le receta.
+        private LocalDate fechaPrescripcion;
+        private LocalDate fechaRetiro;
+        private int estado;// 1: Procesada - 2: Confeccionada - 3: Lista - 4: Entregada
+        private ObservableList<DetalleMedicamento> detalleMedicamentos;
+        private String id;
 
-
-    //constructor con medico y paciente por parametro
-    public Receta(Personal personal, Paciente paciente, LocalDate fechaPrescripcion, LocalDate fechaRetiro, int estado, String id) {
+    public Receta(String id, Personal personal, Paciente paciente, LocalDate fechaPrescripcion, LocalDate fechaRetiro, int estado) {
+        this.id = id;
         this.personal = personal;
         this.paciente = paciente;
         this.fechaPrescripcion = fechaPrescripcion;
         this.fechaRetiro = fechaRetiro;
         this.estado = estado;
-        this.id = id;
         this.detalleMedicamentos = FXCollections.observableArrayList();
     }
 
-    //constructor sin medico y sin paciente los crea nuevos
     public Receta(String id, LocalDate fechaPrescripcion, LocalDate fechaRetiro, int estado) {
         this.id = id;
         this.fechaPrescripcion = fechaPrescripcion;
@@ -38,7 +35,6 @@ public class Receta {
         detalleMedicamentos = FXCollections.observableArrayList();
     }
 
-    //constructor con cedulas
     public Receta(String id, String idPaciente, String idMedico, LocalDate fechaPrescripcion, LocalDate fechaRetiro, int estado) {
         this.id = id;
         this.fechaPrescripcion = fechaPrescripcion;
@@ -112,12 +108,10 @@ public class Receta {
     public void setDetalleMedicamentos(List<DetalleMedicamento> detalleMedicamentos) {
         this.detalleMedicamentos = FXCollections.observableArrayList(detalleMedicamentos);
     }
-// insertar detalle de medicamento
 
     public boolean insertarDetalleMedicamento(DetalleMedicamento detalleMedicamento) {
         String codigoMedicamento = detalleMedicamento.getMedicamento().getCodigo();
-        for (int i = 0; i < detalleMedicamentos.size(); i++) {
-            DetalleMedicamento detalles = detalleMedicamentos.get(i);
+        for (DetalleMedicamento detalles :  detalleMedicamentos) {
             if (detalles.getMedicamento().getCodigo().equals(codigoMedicamento)) {
                 return false;
             }
@@ -126,54 +120,56 @@ public class Receta {
         return true; //Lo añade si NO hay otro detalle con el mismo medicamento. Se puede hacer con detalle, pero pensando en borrarlo luego, menor evitarlo.
     }
 
-
-        //eliminar detalle de medicvamento
-        public boolean eliminarDetalleMedicamento(String codigoMedicamento) {
-            //recorro todo los detalles
-            for (DetalleMedicamento detalles :  detalleMedicamentos) {
-                // Si encuentra uno con el mismo código que me dieron
-                if (detalles.getMedicamento().getCodigo().equals(codigoMedicamento)) {
-                    //lo elimino de la lista
-                    detalleMedicamentos.remove(detalles);
-                    return true;
-                }
+    public boolean eliminarDetalleMedicamento(String codigoMedicamento) {
+        for (DetalleMedicamento detalles :  detalleMedicamentos) {
+            if (detalles.getMedicamento().getCodigo().equals(codigoMedicamento)) {
+                detalleMedicamentos.remove(detalles);
+                return true;
             }
-            return false;
         }
+        return false;
+    }
 
-        //modificar cantidad
-        public boolean modificarCantidad(String codigoMedicamento, int cantidad) {
-            for (DetalleMedicamento detalles :  detalleMedicamentos) {
-                if (detalles.getMedicamento().getCodigo().equals(codigoMedicamento)) {
-                    detalles.setCantidad(cantidad);
-                    return true;
-                }
+    public boolean modificarMedicamentoDelDetalle(String codigoMedicamentoViejo, Medicamento medicamentoNuevo) {
+        for (DetalleMedicamento detalles :  detalleMedicamentos) {
+            if (detalles.getMedicamento().getCodigo().equals(codigoMedicamentoViejo)) {
+                detalles.setMedicamento(medicamentoNuevo);
+                return true;
             }
-            return false;
         }
+        return false;
+    }
 
-        //modificarDuracion
-        public boolean modificarDuracion(String codigoMedicamento, int duracion) {
-            for (DetalleMedicamento detalles :  detalleMedicamentos) {
-                if (detalles.getMedicamento().getCodigo().equals(codigoMedicamento)) {
-                    detalles.setDuracion(duracion);
-                    return true;
-                }
+    public boolean modificarCantidad(String codigoMedicamento, int cantidad) {
+        for (DetalleMedicamento detalles :  detalleMedicamentos) {
+            if (detalles.getMedicamento().getCodigo().equals(codigoMedicamento)) {
+                detalles.setCantidad(cantidad);
+                return true;
             }
-            return false;
         }
+        return false;
+    }
 
-        //modificarIndicacion
-        public boolean modificarIndicacion(String codigoMedicamento, String indicacion) {
-            for (DetalleMedicamento detalles :  detalleMedicamentos) {
-                if (detalles.getMedicamento().getCodigo().equals(codigoMedicamento)) {
-                    detalles.setIndicacion(indicacion);
-                    return true;
-                }
+    public boolean modificarDuracion(String codigoMedicamento, int duracion) {
+        for (DetalleMedicamento detalles :  detalleMedicamentos) {
+            if (detalles.getMedicamento().getCodigo().equals(codigoMedicamento)) {
+                detalles.setDuracion(duracion);
+                return true;
             }
-            return false;
         }
-//obtener detalleMedicamento
+        return false;
+    }
+
+    public boolean modificarIndicacion(String codigoMedicamento, String indicacion) {
+        for (DetalleMedicamento detalles :  detalleMedicamentos) {
+            if (detalles.getMedicamento().getCodigo().equals(codigoMedicamento)) {
+                detalles.setIndicacion(indicacion);
+                return true;
+            }
+        }
+        return false;
+    }
+
     DetalleMedicamento getDetalleMedicamento(String codigoMedicamento) {
         for (DetalleMedicamento detalles :  detalleMedicamentos) {
             if (detalles.getMedicamento().getCodigo().equals(codigoMedicamento)) {
@@ -182,7 +178,7 @@ public class Receta {
         }
         return null;
     }
-//toString de mostrar todos los detalles
+
     public String mostrarTodosLosDetalles() {
         StringBuilder sb = new StringBuilder();
         for (DetalleMedicamento detalle : detalleMedicamentos) {
@@ -190,7 +186,7 @@ public class Receta {
         }
         return sb.toString();
     }
-//Solo mostarr el Detalle
+
     public String mostrarDetalle(String codigoMedicamento) {
         StringBuilder sb = new StringBuilder();
         for (DetalleMedicamento detalle : detalleMedicamentos) {
@@ -200,12 +196,11 @@ public class Receta {
         }
         return sb.toString();
     }
-//verificar si no esta vacia
+
     public Boolean hayMedicamentosEnLaReceta () {
         return !detalleMedicamentos.isEmpty();
     }
 
-    //obtener estado
     public String obtenerNombreEstado(int estado) {
         switch (estado) {
             case 1: return "Procesada";
@@ -229,5 +224,9 @@ public class Receta {
                 ", detalleMedicamentos=" + this.mostrarTodosLosDetalles() + '\n' +
                 '}';
     }
+
+
+
+
 
 }

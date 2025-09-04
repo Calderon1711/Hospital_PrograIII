@@ -1,24 +1,25 @@
 package Modelo;
 
-public class Administrador extends Personal{
-    public Administrador() {
-    }
-
+public class Administrador extends Personal {
     public Administrador(String nombre, String id, String clave) {
         super(nombre, id, clave);
     }
 
+    public Administrador() {
+    }
+
+
     @Override
     public String toString() {
         return "Administrador{" +
-                "clave='" + clave + '\'' +
+                "nombre='" + nombre + '\'' +
                 ", id='" + id + '\'' +
-                ", nombre='" + nombre + '\'' +
+                ", clave='" + clave + '\'' +
                 '}';
     }
 
     @Override
-    public String getTipo() {
+    public String tipo() {
         return "Administrador";
     }
 }

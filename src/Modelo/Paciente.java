@@ -2,19 +2,23 @@ package Modelo;
 import java.time.LocalDate;
 import java.time.Period;
 
+
 public class Paciente {
     private String id;
     private String nombre;
     private LocalDate fechaNacimiento;
     private int telefono;
 
-    public Paciente(String id, String nombre, LocalDate fechaNacimiento, int telefono) {
-        this.id = id;
-        this.nombre = nombre;
-        this.fechaNacimiento = fechaNacimiento;
+    public Paciente(int telefono, LocalDate fechaNacimiento, String nombre, String id) {
         this.telefono = telefono;
+        this.fechaNacimiento = fechaNacimiento;
+        this.nombre = nombre;
+        this.id = id;
     }
-    public Paciente(){}
+
+    public Paciente() {
+
+    }
 
     public String getId() {
         return id;
@@ -36,8 +40,8 @@ public class Paciente {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fecha) {
-        this.fechaNacimiento = fecha;
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public int getTelefono() {
@@ -48,18 +52,13 @@ public class Paciente {
         this.telefono = telefono;
     }
 
-    public int getEdad(){
-        if(fechaNacimiento==null)return 0;
-        return Period.between(fechaNacimiento,LocalDate.now()).getYears();
-    }
-
     @Override
     public String toString() {
-        return "Paciente{" +
-                "id='" + getId() + '\'' +
-                ", nombre='" + getNombre() + '\'' +
-                ", fecha=" + getFechaNacimiento() +
-                ", telefono=" + getTelefono() +
+        return "Paciente{" + '\n' +
+                "id='" + id + '\'' + '\n' +
+                ", nombre='" + nombre + '\'' + '\n' +
+                ", fechaNacimiento=" + fechaNacimiento + '\n' +
+                ", telefono=" + telefono + '\n' +
                 '}';
     }
 }
