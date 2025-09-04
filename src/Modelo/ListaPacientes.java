@@ -84,6 +84,7 @@ public class ListaPacientes {
         for(Paciente p: pacientes){
             if (Objects.equals(normId(p.getId()),id)){
                 return p;
+
             }
         }
         return null;
