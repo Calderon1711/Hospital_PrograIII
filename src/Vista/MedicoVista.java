@@ -5,6 +5,7 @@ import javax.swing.*;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
 
 import java.awt.*;
@@ -26,16 +27,24 @@ public class MedicoVista {
     private JButton descartarMedicamentoButton;
     private JButton detallesButton;
     private JTable tablaMedicamentos;
-    private JLabel DatosLabel;
-    private JLabel DesdeLabel;
-    private JLabel HastaButton;
-    private JComboBox Año_desde;
-    private JComboBox fecha_desde;
-    private JComboBox año_desde;
-    private JComboBox fecha_hasta;
-    private JComboBox medicamentoscombobx;
+    private JPanel Datos;
+    private JComboBox cmbDesdeAnnio;
+    private JComboBox cmbDesdeMes;
+    private JLabel Desde;
+    private JLabel Hasta;
+    private JComboBox cmbHastaAnio;
+    private JComboBox cmbHastaMes;
+    private JComboBox cmbMedicamento;
+    private JButton btnGenerarRango;
+    private JButton btnLimpiar;
+    private JPanel Medicamentos;
+    private JPanel Recetas;
+    private JButton medicamentosButton;
+    private JButton recetasButton;
+    private JButton btnAgregarMesButton;
+    private JButton btnQuitarMesButton;
+    private JTable tblDatos;
     private JPanel graficoMedicamentos;
-    private JPanel graficoRecetas;
 
     private void createUIComponents() {
     }
@@ -44,6 +53,7 @@ public class MedicoVista {
         tablaMedicamentos.setPreferredScrollableViewportSize(tablaMedicamentos.getPreferredSize());
     }
 
+// Graficos de dashboard------------------------------------------------
 
     public void graficoMedicamentos(){
         DefaultPieDataset dataset = new DefaultPieDataset();
@@ -62,4 +72,41 @@ public class MedicoVista {
         graficoMedicamentos.validate();
     }
 
+
+    public void graficoRecetas(JPanel graficoRecetas) {
+            // Crear el dataset
+            DefaultPieDataset dataset = new DefaultPieDataset();
+            dataset.setValue("PROCESO", 4);
+            dataset.setValue("LISTA", 4);
+            dataset.setValue("ENTREGADA", 3);
+            dataset.setValue("CONFECCIONADA", 3);
+
+            // Crear el gráfico
+            JFreeChart chart = ChartFactory.createPieChart(
+                    "Recetas", // Título
+                    dataset,   // Datos
+                    true,      // Leyenda
+                    true,      // Tooltips
+                    false      // URLs
+            );
+
+            // Personalizar colores
+            PiePlot plot = (PiePlot) chart.getPlot();
+            plot.setSectionPaint("PROCESO", Color.RED);
+            plot.setSectionPaint("LISTA", Color.BLUE);
+            plot.setSectionPaint("ENTREGADA", Color.GREEN);
+            plot.setSectionPaint("CONFECCIONADA", Color.YELLOW);
+            plot.setBackgroundPaint(Color.WHITE);
+
+            // Insertar el gráfico en el JPanel
+            ChartPanel chartPanel = new ChartPanel(chart);
+            chartPanel.setPreferredSize(graficoRecetas.getSize());
+            graficoRecetas.removeAll(); // Limpiar contenido previo
+            graficoRecetas.add(chartPanel);
+            graficoRecetas.revalidate();
+            graficoRecetas.repaint();
+        }
+
+//----------------------------------------------------------------------------------
 }
+
