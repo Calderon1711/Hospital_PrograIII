@@ -28,9 +28,7 @@ public class FarmaceuticoVista extends JFrame {
     private JPanel controlpanel;
     private JTable tabRecetas;
 
-    // (Opcional) si agregas campos de fecha en el panel de detalles:
-    // private JTextField txtFechaConf;
-    // private JTextField txtFechaRet;
+
 
     private final RecetaTableModel recetasModel = new RecetaTableModel();
     private final DetalleTableModel detallesModel = new DetalleTableModel();
