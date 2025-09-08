@@ -4,7 +4,7 @@ public abstract class Personal {
     protected String nombre;
     protected String id;
     protected String clave;
-
+    Rol rol;
     public Personal(String nombre, String id, String clave) {
         this.nombre = nombre;
         this.id = id;
@@ -48,6 +48,8 @@ public abstract class Personal {
                 '}';
     }
 
+
     //M.V.P
+    public Rol getRol() {return rol;}
     public abstract String tipo();
 }

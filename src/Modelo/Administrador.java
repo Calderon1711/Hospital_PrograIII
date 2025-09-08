@@ -3,6 +3,7 @@ package Modelo;
 public class Administrador extends Personal {
     public Administrador(String nombre, String id, String clave) {
         super(nombre, id, clave);
+        this.rol = Rol.ADMINISTRADOR;
     }
 
     public Administrador() {

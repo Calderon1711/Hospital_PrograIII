@@ -20,6 +20,10 @@ public class LoginVista1 extends JFrame {
     private JPasswordField CampoClave;
     private JPanel PanelMNSJ_Error;
     private JLabel MSJ_Error;
+    private JPanel PanelUsuario;
+    private JPanel PanelClave;
+    private JPanel PanelFoto;
+    private JLabel Foto;
 
     public LoginVista1() {
         setContentPane(PanelPrincipal);// llamo al pane para q sirva todo slos atributos de arriba
@@ -83,6 +87,17 @@ public class LoginVista1 extends JFrame {
         setVisible(true);//muestra la ventana
         SwingUtilities.invokeLater(() -> PanelPrincipal.requestFocusInWindow()); // pone el foco en el panel principal(asi cuando iniciA NO ESTA EL CURSOR en usuario)
     }
+    // --- Getters para que el controlador acceda a los componentes ---
+
+    public JButton getBotonIngresar() { return BotonIngresar; }
+    public JButton getBotonCancelar() { return BotonCancelar; }
+    public JButton getBotonCambiarContra() { return BotonCambiarContra; }
+
+    public JTextField getCampoUsuario() { return CampoUsuario; }
+    public JPasswordField getCampoClave() { return CampoClave; }
+
+    public JLabel getMSJ_Error() { return MSJ_Error; }
+//-----------------------------------------------------------------------------------------
 
     public static void main(String[] args) {
         new LoginVista1();

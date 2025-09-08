@@ -1,5 +1,5 @@
 package Vista;
-
+import Modelo.Usuario;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,7 +12,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import Modelo.Personal;
 
 public class MedicoVista extends JFrame {
 
@@ -21,8 +21,19 @@ public class MedicoVista extends JFrame {
     private JPanel panel1;
     private JTabbedPane tabbedPane1;
     //=====================================================
-
-
+    public MedicoVista(Personal u){
+        setContentPane(panel1);
+        setTitle("Login");// le pongo titulo
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //para q cuando la aplicacion cierre el programa tambnien
+        setSize(1000, 800);// tamanno de la ventana
+        setLocationRelativeTo(null);
+    }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            MedicoVista vista = new MedicoVista(null);
+            vista.setVisible(true);
+        });
+    }
     //Falta hacer los metodos para llamar a la pestanas
 
 

@@ -72,4 +72,17 @@ public class Hospital {
     public void setMedicamentos(ListaMedicamentos medicamentos) {
         this.medicamentos = medicamentos;
     }
+
+
+    /**
+     * Verifica credenciales de personal o paciente.
+     * Devuelve el objeto correspondiente si es correcto, null si no.
+     */
+    public Personal loginPersonal(String id, String clave) {
+        return personal.verificarCredenciales(id, clave);
+    }
+
+
+
+
 }

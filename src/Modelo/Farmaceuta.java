@@ -3,6 +3,7 @@ package Modelo;
 public class Farmaceuta extends Personal {
     public Farmaceuta(String nombre, String id, String clave) {
         super(nombre, id, clave);
+        this.rol = Rol.MEDICO;
     }
 
     public Farmaceuta() {

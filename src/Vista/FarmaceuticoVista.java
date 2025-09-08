@@ -6,6 +6,8 @@ import javax.swing.table.AbstractTableModel;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import Modelo.Usuario;
+import Modelo.Personal;
 
 public class FarmaceuticoVista extends JFrame {
     private JPanel rootPanel1;
@@ -33,7 +35,7 @@ public class FarmaceuticoVista extends JFrame {
     private final RecetaTableModel recetasModel = new RecetaTableModel();
     private final DetalleTableModel detallesModel = new DetalleTableModel();
 
-    public FarmaceuticoVista() {
+    public FarmaceuticoVista(Personal u) {
         setContentPane(rootPanel1);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Farmacéutico");
@@ -285,7 +287,7 @@ public class FarmaceuticoVista extends JFrame {
         public static void main(String[] args) {
             // Esto asegura que la GUI corra en el hilo de eventos de Swing
             SwingUtilities.invokeLater(() -> {
-                FarmaceuticoVista vista = new FarmaceuticoVista();
+                FarmaceuticoVista vista = new FarmaceuticoVista(null);
                 vista.setVisible(true);
             });
         }

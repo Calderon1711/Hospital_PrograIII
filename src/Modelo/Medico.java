@@ -6,6 +6,7 @@ public class Medico extends Personal {
     public Medico(String nombre, String id, String clave, String especialidad) {
         super(nombre, id, clave);
         this.especialidad = especialidad;
+        this.rol = Rol.MEDICO;
     }
 
     public Medico(String especialidad) {
