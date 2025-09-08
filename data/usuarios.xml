@@ -2,17 +2,17 @@
 <usuarios>
     <usuario id="2001">
         <clave>2001</clave>
-        <nombre>Mario Médico</nombre>
+        <nombre>Alejandro Médico</nombre>
         <rol>MEDICO</rol>
     </usuario>
     <usuario id="3001">
         <clave>3001</clave>
-        <nombre>Fabiola Farmacia</nombre>
+        <nombre>Alejandra Farmacia</nombre>
         <rol>FARMACEUTA</rol>
     </usuario>
     <usuario id="1001">
         <clave>2002</clave>
-        <nombre>Ana Admin</nombre>
+        <nombre>Luis Admin</nombre>
         <rol>ADMINISTRADOR</rol>
     </usuario>
 </usuarios>
