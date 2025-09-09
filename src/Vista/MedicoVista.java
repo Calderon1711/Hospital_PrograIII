@@ -20,23 +20,28 @@ public class MedicoVista extends JFrame {
     //Panel Principal y pestanas
     private JPanel panel1;
     private JTabbedPane tabbedPane1;
+
     //=====================================================
-    public MedicoVista(Personal u){
+    public MedicoVista(Personal u) {
         setContentPane(panel1);
-        setTitle("Login");// le pongo titulo
+        setTitle("Medico");// le pongo titulo
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //para q cuando la aplicacion cierre el programa tambnien
         setSize(1000, 800);// tamanno de la ventana
         setLocationRelativeTo(null);
+        tabbedPane1.setIconAt(0, new ImageIcon(getClass().getResource("/Imagenes_Luis/pestanas/necesitar.png")));
+        tabbedPane1.setIconAt(1, new ImageIcon(getClass().getResource("/Imagenes_Luis/pestanas/diagrama.png")));
+        tabbedPane1.setIconAt(2, new ImageIcon(getClass().getResource("/Imagenes_Luis/pestanas/historial-medico.png")));
+        tabbedPane1.setIconAt(3, new ImageIcon(getClass().getResource("/Imagenes_Luis/pestanas/acerca-de.png")));
     }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             MedicoVista vista = new MedicoVista(null);
             vista.setVisible(true);
         });
     }
+
     //Falta hacer los metodos para llamar a la pestanas
-
-
 
 
     //========================================================
@@ -277,11 +282,11 @@ public class MedicoVista extends JFrame {
         Fecha_de_Retiro = fecha_de_Retiro;
     }
 
-    public JTextField getNombre_del_doctor() {
+    public JLabel getNombre_del_doctor() {
         return Nombre_del_doctor;
     }
 
-    public void setNombre_del_doctor(JTextField nombre_del_doctor) {
+    public void setNombre_del_doctor(JLabel nombre_del_doctor) {
         Nombre_del_doctor = nombre_del_doctor;
     }
 
@@ -382,7 +387,7 @@ public class MedicoVista extends JFrame {
     private JLabel controlLabel;
     private JComboBox Opciones_Fecha_de_Retiro;
     private JTextField Fecha_de_Retiro;
-    private JTextField Nombre_del_doctor;
+    private JLabel Nombre_del_doctor;
     private JButton guardarButton;
     private JButton limpiarButton;
     private JButton descartarMedicamentoButton;
@@ -910,27 +915,15 @@ public class MedicoVista extends JFrame {
 //=======================================================================
 
 
-
-
-
-
             //=================================================================================
 //Pestaña Acerca de
-            private void cargarImagenHospital() {
-                try {
-                    ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/Imagenes_Luis/hospital.png"));
-                    Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
-                    fotoHospital.setIcon(new ImageIcon(imagenEscalada));
-                } catch (Exception e) {
-                    System.err.println("No se pudo cargar la imagen hospital.png");
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-}
+
 
 //================================================================
 
+
+        }
+    }
+}
 
 
