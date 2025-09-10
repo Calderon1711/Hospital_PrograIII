@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="lib2">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../../Program Files/Java/javafx-sdk-24.0.2/lib" />
+      <root url="jar://$PROJECT_DIR$/../../../../../Program Files/Java/jfreechart-1.5.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../../Program Files/Java/javafx-sdk-24.0.2/lib" recursive="false" />
+  </library>
+</component>
