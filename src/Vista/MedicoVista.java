@@ -29,10 +29,22 @@ public class MedicoVista extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //para q cuando la aplicacion cierre el programa tambnien
         setSize(1000, 800);// tamanno de la ventana
         setLocationRelativeTo(null);
-        tabbedPane1.setIconAt(0, new ImageIcon(getClass().getResource("/Imagenes_Luis/pestanas/necesitar.png")));
-        tabbedPane1.setIconAt(1, new ImageIcon(getClass().getResource("/Imagenes_Luis/pestanas/diagrama.png")));
-        tabbedPane1.setIconAt(2, new ImageIcon(getClass().getResource("/Imagenes_Luis/pestanas/historial-medico.png")));
-        tabbedPane1.setIconAt(3, new ImageIcon(getClass().getResource("/Imagenes_Luis/pestanas/acerca-de.png")));
+
+        //Iconos de las pestanas
+
+        ImageIcon iconPrincipal = new ImageIcon(getClass().getResource("/Imagenes_Luis/preescribir.png"));
+        tabbedPane1.setIconAt(0, iconPrincipal);
+
+        ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes_Luis/dashboard.png"));
+        tabbedPane1.setIconAt(1, icon1);
+
+        ImageIcon icon2 = new ImageIcon(getClass().getResource("/Imagenes_Luis/historico.png"));
+        tabbedPane1.setIconAt(2, icon2);
+
+        ImageIcon icon3 = new ImageIcon(getClass().getResource("/Imagenes_Luis/acerca-de.png"));
+        tabbedPane1.setIconAt(3, icon3);
+
+
     }
 
     public static void main(String[] args) {

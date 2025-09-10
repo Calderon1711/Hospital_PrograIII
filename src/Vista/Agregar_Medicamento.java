@@ -11,15 +11,15 @@ public class Agregar_Medicamento extends JFrame{
     private JButton btnOk;
     private JTable table1;
     private JScrollPane TableMedicamentos;
-    private JPanel JPanel1;
+    private JPanel Agregar_Medicamento;
 
 
     //-------------------------------------------------------
     //Getters y Seterrs
 
     public Agregar_Medicamento(Personal u) {
-        setContentPane(JPanel1);
-        setTitle("Buscar Paciente");
+        setContentPane(Agregar_Medicamento);
+        setTitle("Agregar Medicamento");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
