@@ -47,7 +47,7 @@ public class FarmaceuticoVista extends JFrame {
     private void initUi() {
         // Filtros
         cmbFiltro.removeAllItems();
-        cmbFiltro.addItem("Paciente");
+        cmbFiltro.addItem("ID Paciente");
         cmbFiltro.addItem("#Receta");
         checkConfeccionada.setSelected(true);
         checkProceso.setSelected(true);
