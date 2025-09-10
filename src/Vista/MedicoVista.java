@@ -642,6 +642,3 @@ public class MedicoVista extends JFrame {
 
         }
     }
-
-
-
