@@ -8,11 +8,7 @@ import Vista.Buscar_Paciente;
 
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
+
 
 
 public class ControladorMedico extends JFrame{
