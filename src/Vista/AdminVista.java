@@ -2,6 +2,9 @@ package Vista;
 
 import Modelo.Personal;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import java.awt.*;
 
 public class AdminVista extends JFrame {
 
@@ -30,18 +33,60 @@ public class AdminVista extends JFrame {
     private JButton btnQuitarMesButton;
     private JTable tblDatos;
     private JPanel FormatoPanelMedico;
-    private JTextField textField1;
-    private JButton button1;
-    private JButton button2;
-    private JTextField textField2;
+    private JButton BotonLimpiar;
+    private JButton BotonGuardar;
+    private JTextField CampoNombre;
+    private JButton BotonBorrar;
+    private JTable TablaListado;
+    private JTextField CampoID;
     private JTextField textField3;
-    private JButton button3;
-    private JTable table1;
+    private JTextField CampoNombre2;
+    private JButton BuscarBoton;
+    private JButton BotonReporte;
+    private JLabel TextoMedico;
+    private JLabel TextoNombre;
+    private JLabel TextoBusqueda;
+    private JLabel TextoListado;
+    private JScrollPane ScrollTabla;
+    private JLabel TextoId;
+    private JLabel TextoEspecialidad;
+    private JLabel TextoNombre2;
+    private DefaultTableModel modeloMedicos;
 
     public AdminVista(Personal u) {
+        setContentPane(JPanelPrincipal);
         setTitle("Login");// le pongo titulo
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //para q cuando la aplicacion cierre el programa tambnien
-        setSize(4000, 3800);// tamanno de la ventana
+        setSize(1000, 900);// tamanno de la ventana
         setLocationRelativeTo(null);
+        inicializarTablaMedicos();
+    }
+
+    private void inicializarTablaMedicos() {
+        // Columnas de la tabla
+        String[] columnas = {"ID", "Nombre", "Especialidad"};
+
+        // Modelo vacío
+        modeloMedicos = new DefaultTableModel(null, columnas);
+
+        TablaListado.setModel(modeloMedicos);
+        JTableHeader header = TablaListado.getTableHeader();
+        header.setFont(new Font("Arial", Font.BOLD, 14));
+    }
+
+    //  Getters para que la controladora pueda acceder
+    public JTable getTablaMedicos() {
+        return TablaListado;
+    }
+
+    public DefaultTableModel getModeloMedicos() {
+        return modeloMedicos;
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            AdminVista ventana = new AdminVista(null);
+            ventana.setVisible(true);
+        });
     }
 }
