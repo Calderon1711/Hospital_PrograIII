@@ -477,7 +477,7 @@
                   <component id="5cc53" class="javax.swing.JLabel" binding="fotoHospital">
                     <constraints border-constraint="Center"/>
                     <properties>
-                      <icon value="Imagenes_Luis/Hospital.jpg"/>
+                      <icon value="Resources/Icons/r096x9_large.png"/>
                       <text value=""/>
                     </properties>
                   </component>
