@@ -20,6 +20,7 @@ public class MedicoVista extends JFrame {
     //Panel Principal y pestanas
     private JPanel panel1;
     private JTabbedPane tabbedPane1;
+    private JPanel panelPreescribir;
 
     //=====================================================
     public MedicoVista(Personal u) {
@@ -41,10 +42,6 @@ public class MedicoVista extends JFrame {
         });
     }
 
-    //Falta hacer los metodos para llamar a la pestanas
-
-
-    //========================================================
 
     //=============================================================================
     //Setters Y Getters
@@ -330,6 +327,23 @@ public class MedicoVista extends JFrame {
         this.tablaMedicamentos = tablaMedicamentos;
     }
 
+    //============================================================
+    //Mejorados
+    public void setPanelPreescribir(JPanel panelPreescribir) {
+        this.panelPreescribir=panelPreescribir;
+    }
+    public JPanel getPanelPreescribir() {
+        return panelPreescribir;
+    }
+
+    public void setScrollPaneMedicamentos(JScrollPane medi){
+        ScrollPaneMedicamentos=medi;
+    }
+
+    public JScrollPane getScrollPaneMedicamentos() {
+        return ScrollPaneMedicamentos;
+    }
+
     //============================================================================
 
     //Botones de la pestana dashboard
@@ -372,11 +386,6 @@ public class MedicoVista extends JFrame {
     private void createUIComponents() {
     }
 
-    public void ListaMedicamentos() {
-        tablaMedicamentos.setPreferredScrollableViewportSize(tablaMedicamentos.getPreferredSize());
-    }
-
-
 //=======================================================================
 //Pestaña Preescribir
 
@@ -393,329 +402,38 @@ public class MedicoVista extends JFrame {
     private JButton descartarMedicamentoButton;
     private JButton detallesButton;
     private JTable tablaMedicamentos;
+    private JPanel PanelPreescribir;
+    private JScrollPane ScrollPaneMedicamentos;
 
+    public void ModificarTablaMedicamentos() {
+        String[] columnas = {"Medicamento", "Presentación", "Cantidad", "Indicaciones", "Duración (días)"};
 
-    public class RecetaMedicaActions {
+        // Crear modelo vacío con solo columnas
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
-        // Constructor donde se configuran las acciones
-        public RecetaMedicaActions() {
-            configurarAcciones();
-        }
+        // Asignar el modelo a la tabla
+        tablaMedicamentos.setModel(modelo);
 
-        private void configurarAcciones() {
-            // Acción para Buscar Paciente
-            if (buscarPacienteButton != null) {
-                buscarPacienteButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        abrirVentanaBuscarPaciente();
-                    }
-                });
-            }
-
-            // Acción para Agregar Medicamento
-            if (agregarMedicamentoButton != null) {
-                agregarMedicamentoButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        abrirVentanaAgregarMedicamento();
-                    }
-                });
-            }
-
-            // Acción para Guardar
-            if (guardarButton != null) {
-                guardarButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        accionGuardar();
-                    }
-                });
-            }
-
-            // Acción para Limpiar
-            if (limpiarButton != null) {
-                limpiarButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        accionLimpiar();
-                    }
-                });
-            }
-
-            // Acción para Descartar Medicamento
-            if (descartarMedicamentoButton != null) {
-                descartarMedicamentoButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        accionDescartarMedicamento();
-                    }
-                });
-            }
-
-            // Acción para Detalles
-            if (detallesButton != null) {
-                detallesButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        accionDetalles();
-                    }
-                });
-            }
-
-            // Acción para el ComboBox de Fecha de Retiro (si es necesario)
-//            if (opcionesFechaDeRetiro != null) {
-//                opcionesFechaDeRetiro.addActionListener(new ActionListener() {
-//                    @Override
-//                    public void actionPerformed(ActionEvent e) {
-//                        accionCambioFechaRetiro();
-//                    }
-//                });
-//            }
-        }
-
-        // Métodos para las acciones (solo abren ventanas vacías como solicitaste)
-        private void abrirVentanaBuscarPaciente() {
-            JFrame ventanaBuscarPaciente = new JFrame("Buscar Paciente");
-            ventanaBuscarPaciente.setSize(400, 300);
-            ventanaBuscarPaciente.setLocationRelativeTo(null);
-            ventanaBuscarPaciente.setVisible(true);
-        }
-
-        private void abrirVentanaAgregarMedicamento() {
-            JFrame ventanaAgregarMedicamento = new JFrame("Agregar Medicamento");
-            ventanaAgregarMedicamento.setSize(400, 300);
-            ventanaAgregarMedicamento.setLocationRelativeTo(null);
-            ventanaAgregarMedicamento.setVisible(true);
-        }
-
-        private void accionGuardar() {
-            // Solo muestra mensaje (sin implementar lógica real)
-            JOptionPane.showMessageDialog(null, "Función Guardar - Por implementar");
-        }
-
-        private void accionLimpiar() {
-            // Solo muestra mensaje (sin implementar lógica real)
-            JOptionPane.showMessageDialog(null, "Función Limpiar - Por implementar");
-        }
-
-        private void accionDescartarMedicamento() {
-            // Solo muestra mensaje (sin implementar lógica real)
-            JOptionPane.showMessageDialog(null, "Función Descartar Medicamento - Por implementar");
-        }
-
-        private void accionDetalles() {
-            // Solo muestra mensaje (sin implementar lógica real)
-            JOptionPane.showMessageDialog(null, "Función Detalles - Por implementar");
-        }
-
-//        private void accionCambioFechaRetiro() {
-//            // Actualiza el campo de texto con la selección del ComboBox
-//            if (fechaDeRetiro != null && opcionesFechaDeRetiro != null) {
-//                String seleccion = (String) opcionesFechaDeRetiro.getSelectedItem();
-//                fechaDeRetiro.setText(seleccion != null ? seleccion : "");
-//            }
-//        }
-
+        // Asegurarte de que la tabla esté dentro del JScrollPane
+        ScrollPaneMedicamentos.setViewportView(tablaMedicamentos);
     }
+
+
 
 //=======================================================================
 
 
 //=======================================================================
 //Pestaña DashBoard
+    private JPanel PanelDashboard;
 
-    public class DashboardActions {
+    void setPanelDashboard(JPanel panelDashboard) {
+        this.PanelDashboard=panelDashboard;
+    }
 
-
-        // Constructor donde se configuran las acciones
-        public DashboardActions() {
-            configurarAcciones();
-        }
-
-        private void configurarAcciones() {
-            // Acción para Generar Rango
-            if (btnGenerarRango != null) {
-                btnGenerarRango.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        try {
-                            accionGenerarRango();
-                        } catch (Exception ex) {
-                            manejarExcepcion("Error al generar rango", ex);
-                        }
-                    }
-                });
-            }
-
-            // Acción para Limpiar
-            if (btnLimpiar != null) {
-                btnLimpiar.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        try {
-                            accionLimpiar();
-                        } catch (Exception ex) {
-                            manejarExcepcion("Error al limpiar", ex);
-                        }
-                    }
-                });
-            }
-
-            // Acción para Botón Medicamentos
-            if (medicamentosButton != null) {
-                medicamentosButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        try {
-                            accionMedicamentos();
-                        } catch (Exception ex) {
-                            manejarExcepcion("Error en botón medicamentos", ex);
-                        }
-                    }
-                });
-            }
-
-            // Acción para Botón Recetas
-            if (recetasButton != null) {
-                recetasButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        try {
-                            accionRecetas();
-                        } catch (Exception ex) {
-                            manejarExcepcion("Error en botón recetas", ex);
-                        }
-                    }
-                });
-            }
-
-            // Acción para Agregar Mes
-            if (btnAgregarMesButton != null) {
-                btnAgregarMesButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        try {
-                            accionAgregarMes();
-                        } catch (Exception ex) {
-                            manejarExcepcion("Error al agregar mes", ex);
-                        }
-                    }
-                });
-            }
-
-            // Acción para Quitar Mes
-            if (btnQuitarMesButton != null) {
-                btnQuitarMesButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        try {
-                            accionQuitarMes();
-                        } catch (Exception ex) {
-                            manejarExcepcion("Error al quitar mes", ex);
-                        }
-                    }
-                });
-            }
-        }
-
-        // Método para manejar excepciones
-        private void manejarExcepcion(String mensaje, Exception ex) {
-            System.err.println(mensaje + ": " + ex.getMessage());
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null,
-                    mensaje + "\nError: " + ex.getMessage(),
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-
-        // Métodos para las acciones
-        private void accionGenerarRango() {
-            try {
-                System.out.println("Botón Generar Rango presionado");
-                // Aquí iría la lógica para cargar datos en la tabla tblDatos
-                if (tblDatos != null) {
-                    System.out.println("Actualizando tabla de datos...");
-                    // Simulación de carga de datos
-                    DefaultTableModel model = new DefaultTableModel();
-                    model.addColumn("Medicamento");
-                    model.addColumn("Cantidad");
-                    model.addRow(new Object[]{"Acetaminofen", 100});
-                    model.addRow(new Object[]{"Amoxicilina", 75});
-                    tblDatos.setModel(model);
-                }
-            } catch (Exception ex) {
-                throw new RuntimeException("Error en generar rango", ex);
-            }
-        }
-
-        private void accionLimpiar() {
-            try {
-                System.out.println("Botón Limpiar presionado");
-                // Limpiar combos
-                if (cmbDesdeAnnio != null) cmbDesdeAnnio.setSelectedIndex(0);
-                if (cmbDesdeMes != null) cmbDesdeMes.setSelectedIndex(0);
-                if (cmbHastaAnio != null) cmbHastaAnio.setSelectedIndex(0);
-                if (cmbHastaMes != null) cmbHastaMes.setSelectedIndex(0);
-                if (cmbMedicamento != null) cmbMedicamento.setSelectedIndex(0);
-
-                // Limpiar tabla
-                if (tblDatos != null) {
-                    DefaultTableModel model = (DefaultTableModel) tblDatos.getModel();
-                    model.setRowCount(0);
-                }
-            } catch (Exception ex) {
-                throw new RuntimeException("Error al limpiar", ex);
-            }
-        }
-
-        private void accionMedicamentos() {
-            try {
-                System.out.println("Botón Medicamentos presionado");
-                // Filtrar tabla para mostrar solo datos de medicamentos
-                if (tblDatos != null) {
-                    System.out.println("Filtrando por medicamentos...");
-                }
-            } catch (Exception ex) {
-                throw new RuntimeException("Error en botón medicamentos", ex);
-            }
-        }
-
-        private void accionRecetas() {
-            try {
-                System.out.println("Botón Recetas presionado");
-                // Filtrar tabla para mostrar solo datos de recetas
-                if (tblDatos != null) {
-                    System.out.println("Filtrando por recetas...");
-                }
-            } catch (Exception ex) {
-                throw new RuntimeException("Error en botón recetas", ex);
-            }
-        }
-
-        private void accionAgregarMes() {
-            try {
-                System.out.println("Botón Agregar Mes presionado");
-                // Agregar columna de mes a la tabla
-                if (tblDatos != null) {
-                    System.out.println("Agregando columna de mes...");
-                }
-            } catch (Exception ex) {
-                throw new RuntimeException("Error al agregar mes", ex);
-            }
-        }
-
-        private void accionQuitarMes() {
-            try {
-                System.out.println("Botón Quitar Mes presionado");
-                // Quitar columna de mes de la tabla
-                if (tblDatos != null) {
-                    System.out.println("Quitando columna de mes...");
-                }
-            } catch (Exception ex) {
-                throw new RuntimeException("Error al quitar mes", ex);
-            }
-        }
+    JPanel getPanelDashboard() {
+        return PanelDashboard;
+    }
 
 
 //=======================================================================
@@ -924,6 +642,6 @@ public class MedicoVista extends JFrame {
 
         }
     }
-}
+
 
 
