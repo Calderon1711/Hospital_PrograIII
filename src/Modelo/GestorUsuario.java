@@ -11,7 +11,7 @@ public class GestorUsuario {
     public GestorUsuario() {
         // usuarios de prueba
         agregarUsuario("1","med1", "med123", "Dr. Juan Pérez", Rol.MEDICO);
-        agregarUsuario("2","farm1", "farm123", "Ana Gómez", Rol.FARCMACEUTA);
+        agregarUsuario("2","farm1", "farm123", "Ana Gómez", Rol.FARCEMACEUTA);
         agregarUsuario("3","admin", "admin123", "Administrador", Rol.ADMINISTRADOR);
     }
 

@@ -21,7 +21,7 @@ public class ControladorGeneral {
                 vm.setLocationRelativeTo(null);
                 vm.setVisible(true);
                 break;
-            case FARCMACEUTA:
+            case FARCEMACEUTA:
                 FarmaceuticoVista vf = new FarmaceuticoVista(u);
                 vf.setLocationRelativeTo(null);
                 vf.setVisible(true);

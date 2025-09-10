@@ -15,6 +15,7 @@ public class App {
             vista.setLocationRelativeTo(null);
             vista.setVisible(true);
         });
+        System.out.println("Vista Iniciada");
     }
 }
 
