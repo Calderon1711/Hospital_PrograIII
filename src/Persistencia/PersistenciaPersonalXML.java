@@ -17,7 +17,7 @@ public class PersistenciaPersonalXML {
     public static void guardar(ListaPersonal lista) {
         try{
             //Factory para crear DocumentBuilder(DOM)
-            DocumentBuilderFactory Factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory Factory = DocumentBuilderFactory.newInstance();//factory
 
             //esto solo son medidas de seguridad(no es necesario esto es por si cargamos un archivo malicioso o asi  )
             try{
@@ -33,18 +33,18 @@ public class PersistenciaPersonalXML {
                 Factory.setExpandEntityReferences(false);
             }catch(ParserConfigurationException ignored){}
 
-                DocumentBuilder Builder = Factory.newDocumentBuilder();
-                Document documento = Builder.newDocument();
+                DocumentBuilder Builder = Factory.newDocumentBuilder();//DOM
+                Document documento = Builder.newDocument(); // Crea un nuevo documento XML en memoria.
 
                 //Nodo Raiz <Personal>
-                Element raiz = documento.createElement("personal");
+                Element raiz = documento.createElement("personal");//<personal>
                 documento.appendChild(raiz);//inserto la raiz en el documento
 
                 //Se Toma la ObservableList
                 ObservableList<Personal> listaobs= lista.getPersonal();
                 //recorre toda la lista
                 for(Personal p : listaobs){
-                    Element personaElem=documento.createElement("persona");
+                    Element personaElem=documento.createElement("persona"); //<persona>
 
                     //guardar el tipo
                     //-------------------*
