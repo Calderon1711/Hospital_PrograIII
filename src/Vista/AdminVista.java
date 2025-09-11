@@ -51,6 +51,8 @@ public class AdminVista extends JFrame {
     private JLabel TextoId;
     private JLabel TextoEspecialidad;
     private JLabel TextoNombre2;
+    private JLabel fotoHospital;
+    private JPanel PanelAcercaDe;
     private DefaultTableModel modeloMedicos;
 
     public AdminVista(Personal u) {
