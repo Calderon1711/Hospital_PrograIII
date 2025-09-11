@@ -12,6 +12,8 @@ import org.jfree.data.general.DefaultPieDataset;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
+
 import Modelo.Personal;
 
 public class MedicoVista extends JFrame {
@@ -342,14 +344,15 @@ public class MedicoVista extends JFrame {
     //============================================================
     //Mejorados
     public void setPanelPreescribir(JPanel panelPreescribir) {
-        this.panelPreescribir=panelPreescribir;
+        this.panelPreescribir = panelPreescribir;
     }
+
     public JPanel getPanelPreescribir() {
         return panelPreescribir;
     }
 
-    public void setScrollPaneMedicamentos(JScrollPane medi){
-        ScrollPaneMedicamentos=medi;
+    public void setScrollPaneMedicamentos(JScrollPane medi) {
+        ScrollPaneMedicamentos = medi;
     }
 
     public JScrollPane getScrollPaneMedicamentos() {
@@ -431,16 +434,16 @@ public class MedicoVista extends JFrame {
     }
 
 
-
 //=======================================================================
 
 
-//=======================================================================
+    //=======================================================================
 //Pestaña DashBoard
     private JPanel PanelDashboard;
+    private JScrollPane ScrollPaneDashBoard;
 
     void setPanelDashboard(JPanel panelDashboard) {
-        this.PanelDashboard=panelDashboard;
+        this.PanelDashboard = panelDashboard;
     }
 
     JPanel getPanelDashboard() {
@@ -448,209 +451,61 @@ public class MedicoVista extends JFrame {
     }
 
 
+    public void inicializarComponentesDashboard() {
+        // Inicializar combobox con años (2020-2030)
+        for (int i = 2020; i <= 2030; i++) {
+            cmbDesdeAnnio.addItem(String.valueOf(i));
+            cmbHastaAnio.addItem(String.valueOf(i));
+        }
+
+        // Inicializar combobox con meses
+        String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+        for (String mes : meses) {
+            cmbDesdeMes.addItem(mes);
+            cmbHastaMes.addItem(mes);
+        }
+
+        // Inicializar combobox de medicamentos
+        String[] medicamentos = {"Acetaminofen", "Amoxicilina", "Ibuprofeno", "Paracetamol"};
+        for (String med : medicamentos) {
+            cmbMedicamento.addItem(med);
+        }
+
+        // Configurar año y mes actual por defecto
+        Calendar cal = Calendar.getInstance();
+        int añoActual = cal.get(Calendar.YEAR);
+        int mesActual = cal.get(Calendar.MONTH); // 0-11
+
+        cmbDesdeAnnio.setSelectedItem(String.valueOf(añoActual));
+        cmbHastaAnio.setSelectedItem(String.valueOf(añoActual));
+        cmbDesdeMes.setSelectedIndex(mesActual);
+        cmbHastaMes.setSelectedIndex(mesActual);
+    }
+
+    public void ModificarTablaDashBoard() {
+        String[] columnas = {"Medicamento"};
+
+        // Crear modelo vacío con solo columnas
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+
+        // Asignar el modelo a la tabla
+        tblDatos.setModel(modelo);
+
+        // Asegurarte de que la tabla esté dentro del JScrollPane
+        ScrollPaneDashBoard.setViewportView(tblDatos);
+    }
+
+
 //=======================================================================
 // Graficos de dashboard------------------------------------------------
-
-        public void graficoMedicamentos() {
-            DefaultPieDataset dataset = new DefaultPieDataset();
-            dataset.setValue("PROCESO", 4);
-            dataset.setValue("LISTA", 4);
-            dataset.setValue("ENTREGADA", 3);
-            dataset.setValue("CONFECCIONADA", 3);
-
-            JFreeChart chart = ChartFactory.createPieChart("Recetas", dataset, true, true, false);
-            ChartPanel chartPanel = new ChartPanel(chart);
-
-            // Limpia el panel y agrega el gráfico
-            graficoMedicamentos.removeAll();
-            graficoMedicamentos.setLayout(new BorderLayout());
-            graficoMedicamentos.add(chartPanel, BorderLayout.CENTER);
-            graficoMedicamentos.validate();
-        }
-
-
-        public void graficoRecetas(JPanel graficoRecetas) {
-            // Crear el dataset
-            DefaultPieDataset dataset = new DefaultPieDataset();
-            dataset.setValue("PROCESO", 4);
-            dataset.setValue("LISTA", 4);
-            dataset.setValue("ENTREGADA", 3);
-            dataset.setValue("CONFECCIONADA", 3);
-
-            // Crear el gráfico
-            JFreeChart chart = ChartFactory.createPieChart(
-                    "Recetas", // Título
-                    dataset,   // Datos
-                    true,      // Leyenda
-                    true,      // Tooltips
-                    false      // URLs
-            );
-
-            // Personalizar colores
-            PiePlot plot = (PiePlot) chart.getPlot();
-            plot.setSectionPaint("PROCESO", Color.RED);
-            plot.setSectionPaint("LISTA", Color.BLUE);
-            plot.setSectionPaint("ENTREGADA", Color.GREEN);
-            plot.setSectionPaint("CONFECCIONADA", Color.YELLOW);
-            plot.setBackgroundPaint(Color.WHITE);
-
-            // Insertar el gráfico en el JPanel
-            ChartPanel chartPanel = new ChartPanel(chart);
-            chartPanel.setPreferredSize(graficoRecetas.getSize());
-            graficoRecetas.removeAll(); // Limpiar contenido previo
-            graficoRecetas.add(chartPanel);
-            graficoRecetas.revalidate();
-            graficoRecetas.repaint();
-        }
 
 
 //=======================================================================
 //Pestaña Historico
 
 
-        public class HistoricoActions {
-
-
-            // Constructor donde se configuran las acciones
-            public HistoricoActions() {
-                configurarAcciones();
-            }
-
-            private void configurarAcciones() {
-                // Acción para Buscar Histórico
-                if (ButtonBuscarHistorico != null) {
-                    ButtonBuscarHistorico.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            try {
-                                accionBuscarHistorico();
-                            } catch (Exception ex) {
-                                manejarExcepcion("Error al buscar histórico", ex);
-                            }
-                        }
-                    });
-                }
-
-                // Acción para el ComboBox de búsqueda
-                if (cmbBuscarRecetasHistorico != null) {
-                    cmbBuscarRecetasHistorico.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            try {
-                                accionCambioBusqueda();
-                            } catch (Exception ex) {
-                                manejarExcepcion("Error al cambiar búsqueda", ex);
-                            }
-                        }
-                    });
-                }
-            }
-
-            // Método para manejar excepciones
-            private void manejarExcepcion(String mensaje, Exception ex) {
-                System.err.println(mensaje + ": " + ex.getMessage());
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(null,
-                        mensaje + "\nError: " + ex.getMessage(),
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            }
-
-            // Métodos para las acciones
-            private void accionBuscarHistorico() {
-                try {
-                    System.out.println("Botón Buscar Histórico presionado");
-
-                    // Cargar datos en ambas tablas
-                    cargarTablaMedicamentos();
-                    cargarTablaRecetas();
-
-                } catch (Exception ex) {
-                    throw new RuntimeException("Error en buscar histórico", ex);
-                }
-            }
-
-            private void accionCambioBusqueda() {
-                try {
-                    String criterio = (String) cmbBuscarRecetasHistorico.getSelectedItem();
-                    System.out.println("Criterio de búsqueda cambiado: " + criterio);
-
-                    // Filtrar las tablas según el criterio seleccionado
-                    filtrarTablas(criterio);
-
-                } catch (Exception ex) {
-                    throw new RuntimeException("Error al cambiar búsqueda", ex);
-                }
-            }
-
-            private void cargarTablaMedicamentos() {
-                try {
-                    if (tableHistoricoMedicamentos != null) {
-                        // Datos de ejemplo para medicamentos
-                        String[] columnasMedicamentos = {"Medicamento", "Cantidad", "Fecha", "Paciente"};
-                        Object[][] datosMedicamentos = {
-                                {"Acetaminofen", 100, "2025-08-15", "Juan Pérez"},
-                                {"Amoxicilina", 75, "2025-08-16", "María García"},
-                                {"Ibuprofeno", 50, "2025-08-17", "Carlos López"}
-                        };
-
-                        DefaultTableModel model = new DefaultTableModel(datosMedicamentos, columnasMedicamentos);
-                        tableHistoricoMedicamentos.setModel(model);
-                        System.out.println("Tabla de medicamentos cargada");
-                    }
-                } catch (Exception ex) {
-                    throw new RuntimeException("Error al cargar tabla de medicamentos", ex);
-                }
-            }
-
-            private void cargarTablaRecetas() {
-                try {
-                    if (tableHistoricoRecetas != null) {
-                        // Datos de ejemplo para recetas
-                        String[] columnasRecetas = {"N° Receta", "Médico", "Fecha", "Estado", "Paciente"};
-                        Object[][] datosRecetas = {
-                                {"REC-001", "Dr. Rodríguez", "2025-08-15", "Entregada", "Juan Pérez"},
-                                {"REC-002", "Dra. Martínez", "2025-08-16", "Proceso", "María García"},
-                                {"REC-003", "Dr. González", "2025-08-17", "Confeccionada", "Carlos López"}
-                        };
-
-                        DefaultTableModel model = new DefaultTableModel(datosRecetas, columnasRecetas);
-                        tableHistoricoRecetas.setModel(model);
-                        System.out.println("Tabla de recetas cargada");
-                    }
-                } catch (Exception ex) {
-                    throw new RuntimeException("Error al cargar tabla de recetas", ex);
-                }
-            }
-
-            private void filtrarTablas(String criterio) {
-                try {
-                    System.out.println("Filtrando tablas con criterio: " + criterio);
-
-                    // Aquí iría la lógica de filtrado según el criterio
-                    // Por ahora solo mostramos mensajes
-                    if (tableHistoricoMedicamentos != null) {
-                        System.out.println("Filtrando tabla de medicamentos...");
-                    }
-
-                    if (tableHistoricoMedicamentos != null) {
-                        System.out.println("Filtrando tabla de recetas...");
-                    }
-
-                } catch (Exception ex) {
-                    throw new RuntimeException("Error al filtrar tablas", ex);
-                }
-            }
-
 //=======================================================================
+//Pestana Acerca de
 
-
-            //=================================================================================
-//Pestaña Acerca de
-
-
-//================================================================
-
-
-        }
-    }
+}
