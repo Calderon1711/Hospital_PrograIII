@@ -53,7 +53,24 @@ public class AdminVista extends JFrame {
     private JLabel TextoNombre2;
     private JLabel fotoHospital;
     private JPanel PanelAcercaDe;
+    private JTable tableHistoricoRecetas;
+    private JButton ButtonBuscarHistorico;
+    private JComboBox cmbBuscarRecetasHistorico;
+    private JTable tableHistoricoMedicamentos;
+    private JPanel Historial;
+    private JPanel FormatoFarmaceutico;
+    private JTextField textField2;
+    private JButton guardarButton;
+    private JButton limpiarButton;
+    private JTextField textField4;
+    private JButton borrarButton;
+    private JTextField textField1;
+    private JTextField textField5;
+    private JButton buscarButton;
+    private JButton reporteButton;
+    private JTable TablaListadofarma;
     private DefaultTableModel modeloMedicos;
+    private DefaultTableModel modeloFarmaceuticos;
 
     public AdminVista(Personal u) {
         setContentPane(JPanelPrincipal);
@@ -62,6 +79,7 @@ public class AdminVista extends JFrame {
         setSize(1000, 900);// tamanno de la ventana
         setLocationRelativeTo(null);
         inicializarTablaMedicos();
+        inicializarTablaFarmaceuticos();
     }
 
     private void inicializarTablaMedicos() {
@@ -73,17 +91,32 @@ public class AdminVista extends JFrame {
 
         TablaListado.setModel(modeloMedicos);
         JTableHeader header = TablaListado.getTableHeader();
-        header.setFont(new Font("Arial", Font.BOLD, 14));
+        header.setFont(new Font("Arial", Font.BOLD, 15));
+    }
+
+    private void inicializarTablaFarmaceuticos(){
+
+        String[] columnas = {"ID", "Nombre", "Especialidad"};
+        modeloFarmaceuticos = new DefaultTableModel(null, columnas);
+        TablaListadofarma.setModel(modeloFarmaceuticos);
+        JTableHeader header = TablaListadofarma.getTableHeader();
+        header.setFont(new Font("Arial", Font.BOLD, 15));
+
+
+
+
     }
 
     //  Getters para que la controladora pueda acceder
     public JTable getTablaMedicos() {
         return TablaListado;
     }
-
     public DefaultTableModel getModeloMedicos() {
         return modeloMedicos;
     }
+
+    public JTable getTablaFarmaceuticos() {return TablaListadofarma;}
+    public DefaultTableModel getModeloFarmaceuticos() {return modeloFarmaceuticos;}
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {

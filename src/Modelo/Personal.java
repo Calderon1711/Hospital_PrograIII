@@ -5,10 +5,11 @@ public abstract class Personal {
     protected String id;
     protected String clave;
     Rol rol;
-    public Personal(String nombre, String id, String clave) {
+    public Personal(String nombre, String id, String clave,Rol rol) {
         this.nombre = nombre;
         this.id = id;
         this.clave = clave;
+        this.rol = rol;
     }
 
     public Personal() {
@@ -45,6 +46,7 @@ public abstract class Personal {
                 "nombre='" + nombre + '\'' + '\n' +
                 ", id='" + id + '\'' + '\n' +
                 ", clave='" + clave + '\'' + '\n' +
+                ", rol=" + rol + '\n' +
                 '}';
     }
 

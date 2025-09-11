@@ -95,7 +95,7 @@ public class ListaPersonal {
             sb.append(i + 1)
                     .append(". ID: ").append(persona.getId())
                     .append(" | Nombre: ").append(persona.getNombre())
-                    .append(" | Tipo: ").append(persona.tipo());
+                    .append(" | Tipo: ").append(persona.getRol());
 
             // Información adicional para Médicos
             if (persona instanceof Medico) {
@@ -117,7 +117,7 @@ public class ListaPersonal {
         StringBuilder sb = new StringBuilder("=== DETALLES DEL PERSONAL ===\n");
         sb.append("ID: ").append(persona.getId()).append("\n");
         sb.append("Nombre: ").append(persona.getNombre()).append("\n");
-        sb.append("Tipo: ").append(persona.tipo()).append("\n");
+        sb.append("Tipo: ").append(persona.getRol()).append("\n");
 
         if (persona instanceof Medico) {
             Medico medico = (Medico) persona;

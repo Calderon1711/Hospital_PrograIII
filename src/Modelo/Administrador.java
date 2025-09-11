@@ -1,9 +1,9 @@
 package Modelo;
 
 public class Administrador extends Personal {
-    public Administrador(String nombre, String id, String clave) {
-        super(nombre, id, clave);
-        this.rol = Rol.ADMINISTRADOR;
+    public Administrador(String nombre, String id, String clave, Rol rol) {
+        super(nombre, id, clave,rol);
+
     }
 
     public Administrador() {
@@ -16,6 +16,7 @@ public class Administrador extends Personal {
                 "nombre='" + nombre + '\'' +
                 ", id='" + id + '\'' +
                 ", clave='" + clave + '\'' +
+                ", rol=" + rol +
                 '}';
     }
 

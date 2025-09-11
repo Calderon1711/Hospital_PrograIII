@@ -8,15 +8,15 @@ import java.util.List;
 
 class main {
     public static void main(String[] args) {
-        Paciente paciente = new Paciente(70599270, java.time.LocalDate.of(2005,11,17),"Alejandro","119510334");
+       Paciente paciente = new Paciente(70599270, java.time.LocalDate.of(2005,11,17),"Alejandro","119510334");
         Paciente paciente2 = new Paciente(88276784, java.time.LocalDate.of(2006,1,15),"Isa","7465443");
         Paciente paciente3 = new Paciente(70599270, java.time.LocalDate.of(2012,4,7),"gabriel","486543");
 
-        Medico medico = new Medico("Sebas","11951444","132456","Cirujano");
-        Medico medico2 = new Medico("Amparo","159635","22222","X");
-        Medico medico3 = new Medico("Fabiola","151444","33333","Y");
-        Administrador admin1= new Administrador("Roberto","159951","4444");
-        Farmaceuta farmaceuta= new Farmaceuta("Sofia","147258","1236547899");
+        Medico medico = new Medico("Sebas","11951444","132456","Cirujano",Rol.MEDICO);
+        Medico medico2 = new Medico("Amparo","159635","22222","X",Rol.MEDICO);
+        Medico medico3 = new Medico("Fabiola","151444","33333","Y",Rol.MEDICO);
+        Administrador admin1= new Administrador("Roberto","159951","4444",Rol.ADMINISTRADOR);
+        Farmaceuta farmaceuta= new Farmaceuta("Sofia","147258","1236547899",Rol.FARCEMACEUTA);
 
         Receta receta= new Receta("1",medico,paciente,LocalDate.now(),LocalDate.of(2026,10,8),1);
         Receta receta2= new Receta("2",medico2,paciente2,LocalDate.now(),LocalDate.of(2027,4,2),2);

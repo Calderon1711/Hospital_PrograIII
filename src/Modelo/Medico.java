@@ -3,8 +3,8 @@ package Modelo;
 public class Medico extends Personal {
     private String especialidad;
 
-    public Medico(String nombre, String id, String clave, String especialidad) {
-        super(nombre, id, clave);
+    public Medico(String nombre, String id, String clave, String especialidad,Rol rol) {
+        super(nombre, id, clave,rol);
         this.especialidad = especialidad;
         this.rol = Rol.MEDICO;
     }
@@ -36,6 +36,7 @@ public class Medico extends Personal {
                 ", especialidad='" + especialidad + '\'' +
                 ", id='" + id + '\'' +
                 ", clave='" + clave + '\'' +
+                ", rol=" + rol +
                 '}';
     }
 }
