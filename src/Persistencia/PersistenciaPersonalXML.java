@@ -127,20 +127,89 @@ public class PersistenciaPersonalXML {
             StreamResult result = new StreamResult(new File("ListaPersonal.xml"));//indica dónde se va a escribir el XML.
             transformer.transform(source, result);//aca se transforma
 
-            System.out.println("✅ Personal guardado en " + "ListaPersonal.xml");
+            System.out.println(" Personal guardado en " + "ListaPersonal.xml");
         }catch(ParserConfigurationException | TransformerException e){
                 e.printStackTrace();
         }
     }
-/*
+
+    private static String getTagValue(String tag, Element element) {
+        NodeList lista = element.getElementsByTagName(tag);
+        if (lista != null && lista.getLength() > 0) {
+            Node nodo = lista.item(0);
+            if (nodo != null) {
+                return nodo.getTextContent();
+            }
+        }
+        return null;
+    }
+
+
     public static ListaPersonal cargar() {
         ListaPersonal lista = new ListaPersonal();
         try {
+            //verificamos
             File archivo = new File("ListaPersonal.xml");
             if (!archivo.exists()) {
                 System.out.println(" Archivo no encontrado: " + "ListaPersonal.xml" + " — devolviendo lista vacía.");
                 return lista;
             }
-        }catch(Exception e) {}
-    }*/
+
+            DocumentBuilderFactory Factory = DocumentBuilderFactory.newInstance(); //fabrica
+            // seguridad básica
+            try {
+                Factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+                Factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+                Factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+                Factory.setXIncludeAware(false);
+                Factory.setExpandEntityReferences(false);
+            } catch (ParserConfigurationException ignored) {}
+
+            DocumentBuilder Builder = Factory.newDocumentBuilder(); //DOM
+            Document documento = Builder.parse(archivo);//lee el archivo XML y lo convierte en un objeto Document
+            documento.getDocumentElement().normalize(); //limpia nodos vacíos y espacios innecesarios en el árbol XML.
+
+            NodeList nodos = documento.getElementsByTagName("personal");
+            //corremos todos los nodos <persona>
+            for (int i = 0; i < nodos.getLength(); i++) {
+                Element personaElem= (Element) nodos.item(i);
+                //leemos los datos
+                String tipo= personaElem.getAttribute("tipo");
+                String id= getTagValue("id",personaElem);
+                String nombre = getTagValue("nombre",personaElem);
+                String clave = getTagValue("clave",personaElem);
+                String rolText = getTagValue( "rol",personaElem);
+                Rol rol = null;
+
+                //esto es para convertir el<Rol> a un valor de enum ya q se guardo como ""
+                //-------------------------------------------------*
+                if (rolText != null && !rolText.isEmpty()) {
+                    try { rol = Rol.valueOf(rolText);
+                    } catch (IllegalArgumentException ignored) {
+                        rol = null;
+                    }
+                }
+                //------------------------------------------------------*
+                //creamos los de personal haciendo un dynamic cast
+                Personal p =null;
+                if("Medico".equalsIgnoreCase(tipo)||rol== Rol.MEDICO){
+                    String especialidad = getTagValue("especialidad",personaElem);
+                    p=new Medico(nombre,id,clave,especialidad,Rol.MEDICO);
+                } else if ("Farmaceuta".equalsIgnoreCase(tipo)||rol==Rol.FARCEMACEUTA) {
+                    p= new Farmaceuta(nombre,id,clave,rol);
+                } else if ("Administrador".equalsIgnoreCase(tipo)||rol== Rol.ADMINISTRADOR) {
+                    p=new Administrador(nombre,id,clave,rol);
+                }else{
+                    System.err.println(" Tipo no reconocido en XML (fila " + i + "): tipo='" + tipo + "', rol='" + rolText + "'. Entrada ignorada.");
+                    continue;
+                }
+                lista.getPersonal().add(p);
+            }
+
+            System.out.println(" Personal cargado desde " + "PersonalXML");
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
 }

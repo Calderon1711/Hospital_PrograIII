@@ -2,7 +2,7 @@ package Modelo;
 
 import java.util.List;
 import java.util.ArrayList;
-
+import Persistencia.PersistenciaPersonalXML;
 public class Hospital {
     private static Hospital instance;
     private ListaMedicamentos medicamentos;
@@ -13,10 +13,11 @@ public class Hospital {
     //Singleton.
     private Hospital(ListaPersonal personal, ListaPacientes pacientes,
                      ListaMedicamentos medicamentos, ListaRecetas recetas) {
-        this.personal = personal;
+        this.personal = PersistenciaPersonalXML.cargar();
         this.pacientes = pacientes;
         this.medicamentos = medicamentos;
         this.recetas = recetas;
+
     }
 
     private Hospital() {
@@ -82,7 +83,7 @@ public class Hospital {
         return personal.verificarCredenciales(id, clave);
     }
 
-
-
-
+    public void guradarPersonal(){
+        PersistenciaPersonalXML.guardar(personal);
+    }
 }
