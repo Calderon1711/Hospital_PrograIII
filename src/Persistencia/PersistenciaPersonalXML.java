@@ -53,7 +53,7 @@ public class PersistenciaPersonalXML {
                     } else {
                         personaElem.setAttribute("tipo", "");
                     }
-                    documento.appendChild(personaElem);
+
                     //-----------------------------*
 
                     //guardar id
@@ -64,7 +64,7 @@ public class PersistenciaPersonalXML {
                     } else {
                         idElem.setTextContent("");
                     }
-                    documento.appendChild(idElem);
+                    personaElem.appendChild(idElem);
                     //-----------------------------------*
 
                     //guardar nombre
@@ -75,7 +75,7 @@ public class PersistenciaPersonalXML {
                     }else {
                         nombreElem.setTextContent("");
                     }
-                    documento.appendChild(nombreElem);
+                    personaElem.appendChild(nombreElem);
                     //--------------------------------------*
 
                     //guardarClave
@@ -86,7 +86,7 @@ public class PersistenciaPersonalXML {
                     }else{
                         claveElem.setTextContent("");
                     }
-                    documento.appendChild(claveElem);
+                    personaElem.appendChild(claveElem);
                     //-------------------------------------------*
 
                     //guardarRol
@@ -97,7 +97,7 @@ public class PersistenciaPersonalXML {
                     }else {
                         rolElem.setTextContent("");
                     }
-                    documento.appendChild(rolElem);
+                    personaElem.appendChild(rolElem);
                     //-----------------------------------------------*
 
                     // Campo exclusivo de Medico
@@ -124,7 +124,7 @@ public class PersistenciaPersonalXML {
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");//controla cuántos espacios se usan por nivel de indentación.
 
             DOMSource source = new DOMSource(documento); //es un contenedor que le dice al transformador que se va transformar
-            StreamResult result = new StreamResult(new File("ListaPersonal.xml"));//indica dónde se va a escribir el XML.
+            StreamResult result = new StreamResult(new File("data/ListaPersonal.xml"));//indica dónde se va a escribir el XML.
             transformer.transform(source, result);//aca se transforma
 
             System.out.println(" Personal guardado en " + "ListaPersonal.xml");
@@ -149,7 +149,7 @@ public class PersistenciaPersonalXML {
         ListaPersonal lista = new ListaPersonal();
         try {
             //verificamos
-            File archivo = new File("ListaPersonal.xml");
+            File archivo = new File("data/ListaPersonal.xml");
             if (!archivo.exists()) {
                 System.out.println(" Archivo no encontrado: " + "ListaPersonal.xml" + " — devolviendo lista vacía.");
                 return lista;
@@ -169,7 +169,7 @@ public class PersistenciaPersonalXML {
             Document documento = Builder.parse(archivo);//lee el archivo XML y lo convierte en un objeto Document
             documento.getDocumentElement().normalize(); //limpia nodos vacíos y espacios innecesarios en el árbol XML.
 
-            NodeList nodos = documento.getElementsByTagName("personal");
+            NodeList nodos = documento.getElementsByTagName("persona");
             //corremos todos los nodos <persona>
             for (int i = 0; i < nodos.getLength(); i++) {
                 Element personaElem= (Element) nodos.item(i);
@@ -195,7 +195,7 @@ public class PersistenciaPersonalXML {
                 if("Medico".equalsIgnoreCase(tipo)||rol== Rol.MEDICO){
                     String especialidad = getTagValue("especialidad",personaElem);
                     p=new Medico(nombre,id,clave,especialidad,Rol.MEDICO);
-                } else if ("Farmaceuta".equalsIgnoreCase(tipo)||rol==Rol.FARCEMACEUTA) {
+                } else if ("Farmaceuta".equalsIgnoreCase(tipo)||rol==Rol.FARMACEUTICO) {
                     p= new Farmaceuta(nombre,id,clave,rol);
                 } else if ("Administrador".equalsIgnoreCase(tipo)||rol== Rol.ADMINISTRADOR) {
                     p=new Administrador(nombre,id,clave,rol);

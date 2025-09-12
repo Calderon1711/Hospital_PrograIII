@@ -21,15 +21,17 @@ public class Hospital {
     }
 
     private Hospital() {
-        this.personal = new ListaPersonal();
+        this.personal = PersistenciaPersonalXML.cargar();
         this.pacientes = new ListaPacientes();
         this.medicamentos = new ListaMedicamentos();
         this.recetas = new ListaRecetas();
     }
 
     public static Hospital getInstance() {
+
         if (instance == null) {
             instance = new Hospital();
+
         }
         return instance;
     }
@@ -85,5 +87,9 @@ public class Hospital {
 
     public void guradarPersonal(){
         PersistenciaPersonalXML.guardar(personal);
+    }
+
+    public void cargarPersonal(){
+        personal = PersistenciaPersonalXML.cargar();
     }
 }
