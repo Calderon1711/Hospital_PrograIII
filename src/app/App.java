@@ -1,7 +1,7 @@
 package app;
 // App.java
 import javax.swing.SwingUtilities;
-import Modelo.GestorUsuario;
+
 import Controlador.ControladorGeneral;
 import Controlador.ControladorLogin;
 import Modelo.Hospital;

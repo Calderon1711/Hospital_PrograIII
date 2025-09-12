@@ -1,12 +1,9 @@
 package Controlador;
 
 // ControladorLogin.java
-import Modelo.GestorUsuario;
 import Modelo.Personal;
-import Modelo.Usuario;
 import Vista.LoginVista1;
 import Modelo.Hospital;
-import Modelo.Personal;
 
 import javax.swing.*;
 import java.util.Arrays;

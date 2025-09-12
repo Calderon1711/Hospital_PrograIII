@@ -1,26 +1,70 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ListaPersonal>
-    <persona>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<personal>
+    <persona tipo="Medico">
         <id>med001</id>
-        <clave>1234</clave>
         <nombre>Ana Morales</nombre>
+        <clave>1234</clave>
         <rol>MEDICO</rol>
         <especialidad>Pediatría</especialidad>
     </persona>
-
-    <persona>
+    
+    <persona tipo="Farmaceuta">
         <id>far001</id>
-        <clave>abcd</clave>
         <nombre>Carlos Rojas</nombre>
+        <clave>abcd</clave>
         <rol>FARMACEUTICO</rol>
-        <especialidad>Farmacología Clínica</especialidad>
     </persona>
-
-    <persona>
+    
+    <persona tipo="Administrador">
         <id>adm001</id>
-        <clave>admin</clave>
         <nombre>Laura González</nombre>
+        <clave>admin</clave>
         <rol>ADMINISTRADOR</rol>
-        <especialidad>Gestión Hospitalaria</especialidad>
     </persona>
-</ListaPersonal>
+    
+    <persona tipo="Medico">
+        <id>11951444</id>
+        <nombre>Sebas</nombre>
+        <clave>132456</clave>
+        <rol>MEDICO</rol>
+        <especialidad>Cirujano</especialidad>
+    </persona>
+    
+    <persona tipo="Medico">
+        <id>159635</id>
+        <nombre>Amparo</nombre>
+        <clave>22222</clave>
+        <rol>MEDICO</rol>
+        <especialidad>X</especialidad>
+    </persona>
+    
+    <persona tipo="Medico">
+        <id>151444</id>
+        <nombre>Fabiola</nombre>
+        <clave>33333</clave>
+        <rol>MEDICO</rol>
+        <especialidad>Y</especialidad>
+    </persona>
+    
+    <persona tipo="Administrador">
+        <id>159951</id>
+        <nombre>Roberto</nombre>
+        <clave>4444</clave>
+        <rol>ADMINISTRADOR</rol>
+    </persona>
+    
+    <persona tipo="Farmaceuta">
+        <id>147258</id>
+        <nombre>Sofia</nombre>
+        <clave>1236547899</clave>
+        <rol>FARMACEUTICO</rol>
+    </persona>
+    
+    <persona tipo="Farmaceuta">
+        <id>12</id>
+        <nombre>moni</nombre>
+        <clave>123789</clave>
+        <rol>FARMACEUTICO</rol>
+    </persona>
+    
+</personal>

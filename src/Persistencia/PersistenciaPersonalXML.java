@@ -113,7 +113,8 @@ public class PersistenciaPersonalXML {
                     }
 
                     raiz.appendChild(personaElem);
-
+                    Text salto = documento.createTextNode("\n");
+                    raiz.appendChild(salto);
                 }
             // Transformador para escribir el DOM en archivo
             TransformerFactory tf = TransformerFactory.newInstance();// crea una fabrica es responsable de convertir un documento DOM a un xml
@@ -121,7 +122,7 @@ public class PersistenciaPersonalXML {
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");//Le indica al transformador que indente el XML al escribirlo
             transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");//codifique el archivo en UTF-8.
             // Propiedad para controlar cantidad de espacios en la indentación (funciona en Xalan/Apache)
-            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");//controla cuántos espacios se usan por nivel de indentación.
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");//controla cuántos espacios se usan por nivel de indentación.
 
             DOMSource source = new DOMSource(documento); //es un contenedor que le dice al transformador que se va transformar
             StreamResult result = new StreamResult(new File("data/ListaPersonal.xml"));//indica dónde se va a escribir el XML.
