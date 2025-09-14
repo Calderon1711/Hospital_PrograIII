@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ListaRecetas>
+  <Receta id="1">
+    <Paciente id="119510334" nombre="Alejandro"/>
+    <Personal id="11951444" nombre="Sebas"/>
+    <FechaPrescripcion>2025-09-14</FechaPrescripcion>
+    <FechaRetiro>2026-10-08</FechaRetiro>
+    <Estado>1</Estado>
+    <Detalles>
+      <DetalleMedicamento cantidad="8" duracion="4" idDetalle="123456" indicacion="Tomar por 4 dias cada noche">
+        <Medicamento codigo="123" nombre="aspirina" presentacion="100mg"/>
+      </DetalleMedicamento>
+      <DetalleMedicamento cantidad="4" duracion="1" idDetalle="654321" indicacion="Tomar solamente cuando hay mareos">
+        <Medicamento codigo="321" nombre="Gravol" presentacion="Frasco liqyuido"/>
+      </DetalleMedicamento>
+    </Detalles>
+  </Receta>
+  <Receta id="2">
+    <Paciente id="7465443" nombre="Isa"/>
+    <Personal id="159635" nombre="Amparo"/>
+    <FechaPrescripcion>2025-09-14</FechaPrescripcion>
+    <FechaRetiro>2027-04-02</FechaRetiro>
+    <Estado>2</Estado>
+    <Detalles>
+      <DetalleMedicamento cantidad="4" duracion="1" idDetalle="654321" indicacion="Tomar solamente cuando hay mareos">
+        <Medicamento codigo="321" nombre="Gravol" presentacion="Frasco liqyuido"/>
+      </DetalleMedicamento>
+    </Detalles>
+  </Receta>
+  <Receta id="3">
+    <Paciente id="486543" nombre="gabriel"/>
+    <Personal id="151444" nombre="Fabiola"/>
+    <FechaPrescripcion>2025-09-14</FechaPrescripcion>
+    <FechaRetiro>2028-03-20</FechaRetiro>
+    <Estado>3</Estado>
+    <Detalles>
+      <DetalleMedicamento cantidad="8" duracion="4" idDetalle="123456" indicacion="Tomar por 4 dias cada noche">
+        <Medicamento codigo="123" nombre="aspirina" presentacion="100mg"/>
+      </DetalleMedicamento>
+    </Detalles>
+  </Receta>
+</ListaRecetas>

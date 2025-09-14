@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<pacientes>
+    <paciente>
+        <id>119510334</id>
+        <nombre>Alejandro</nombre>
+        <fechaNacimiento>2005-11-17</fechaNacimiento>
+        <telefono>70599270</telefono>
+    </paciente>
+    
+    <paciente>
+        <id>7465443</id>
+        <nombre>Isa</nombre>
+        <fechaNacimiento>2006-01-15</fechaNacimiento>
+        <telefono>88276784</telefono>
+    </paciente>
+    
+    <paciente>
+        <id>486543</id>
+        <nombre>gabriel</nombre>
+        <fechaNacimiento>2012-04-07</fechaNacimiento>
+        <telefono>70599270</telefono>
+    </paciente>
+    
+</pacientes>

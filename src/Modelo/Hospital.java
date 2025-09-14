@@ -2,7 +2,12 @@ package Modelo;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import Persistencia.PersistenciaMedicamentosXML;
+import Persistencia.PersistenciaPacientesXML;
 import Persistencia.PersistenciaPersonalXML;
+import Persistencia.PersistenciaRecetasXML;
+
 public class Hospital {
     private static Hospital instance;
     private ListaMedicamentos medicamentos;
@@ -88,8 +93,16 @@ public class Hospital {
     public void guradarPersonal(){
         PersistenciaPersonalXML.guardar(personal);
     }
-
     public void cargarPersonal(){
         personal = PersistenciaPersonalXML.cargar();
     }
+
+    public void guardarRecetas(){PersistenciaRecetasXML.guardarRecetas(recetas);}
+    public void cargarRecetas(){recetas= PersistenciaRecetasXML.cargarRecetas();}
+
+    public void guardarMedicamentos(){PersistenciaMedicamentosXML.guardar(medicamentos);}
+    public void cargarMedicamentos(){medicamentos=PersistenciaMedicamentosXML.cargar();}
+
+    public void guardarPacientes(){PersistenciaPacientesXML.guardar(pacientes);}
+    public void cargarPacientes(){pacientes=PersistenciaPacientesXML.cargar();}
 }

@@ -8,73 +8,80 @@ import java.util.List;
 
 class main {
     public static void main(String[] args) {
-        Hospital hospi=Hospital.getInstance();
+        Hospital hospi = Hospital.getInstance();
+
+        // === Cargar datos desde XML antes de trabajar ===
         hospi.cargarPersonal();
-       Paciente paciente = new Paciente(70599270, java.time.LocalDate.of(2005,11,17),"Alejandro","119510334");
-        Paciente paciente2 = new Paciente(88276784, java.time.LocalDate.of(2006,1,15),"Isa","7465443");
-        Paciente paciente3 = new Paciente(70599270, java.time.LocalDate.of(2012,4,7),"gabriel","486543");
+        hospi.cargarPacientes();
+        hospi.cargarMedicamentos();
+        hospi.cargarRecetas();
 
-        Medico medico = new Medico("Sebas","11951444","132456","Cirujano",Rol.MEDICO);
-        Medico medico2 = new Medico("Amparo","159635","22222","X",Rol.MEDICO);
-        Medico medico3 = new Medico("Fabiola","151444","33333","Y",Rol.MEDICO);
-        Administrador admin1= new Administrador("Roberto","159951","4444",Rol.ADMINISTRADOR);
-        Farmaceuta farmaceuta= new Farmaceuta("Sofia","147258","1236547899",Rol.FARMACEUTICO);
-        Farmaceuta farmaceuta2= new Farmaceuta("moni","12","123789",Rol.FARMACEUTICO);
+        // === Crear objetos de prueba ===
+        Paciente paciente = new Paciente(70599270, LocalDate.of(2005, 11, 17), "Alejandro", "119510334");
+        Paciente paciente2 = new Paciente(88276784, LocalDate.of(2006, 1, 15), "Isa", "7465443");
+        Paciente paciente3 = new Paciente(70599270, LocalDate.of(2012, 4, 7), "gabriel", "486543");
 
-        Receta receta= new Receta("1",medico,paciente,LocalDate.now(),LocalDate.of(2026,10,8),1);
-        Receta receta2= new Receta("2",medico2,paciente2,LocalDate.now(),LocalDate.of(2027,4,2),2);
-        Receta receta3= new Receta("3",medico3,paciente3,LocalDate.now(),LocalDate.of(2028,3,20),3);
-        Medicamento medicamento= new Medicamento("aspirina","100mg","123");
-        Medicamento medicamento1= new Medicamento("Gravol","Frasco liqyuido","321");
-        DetalleMedicamento detalleMedicamento2= new DetalleMedicamento(medicamento1,"654321",4,1,"Tomar solamente cuando hay mareos");
-        DetalleMedicamento detalleMedicamento= new DetalleMedicamento(medicamento,"123456",8,4,"Tomar por 4 dias cada noche");
+        Medico medico = new Medico("Sebas", "11951444", "132456", "Cirujano", Rol.MEDICO);
+        Medico medico2 = new Medico("Amparo", "159635", "22222", "X", Rol.MEDICO);
+        Medico medico3 = new Medico("Fabiola", "151444", "33333", "Y", Rol.MEDICO);
+        Administrador admin1 = new Administrador("Roberto", "159951", "4444", Rol.ADMINISTRADOR);
+        Farmaceuta farmaceuta = new Farmaceuta("Sofia", "147258", "1236547899", Rol.FARMACEUTICO);
+        Farmaceuta farmaceuta2 = new Farmaceuta("moni", "12", "123789", Rol.FARMACEUTICO);
+
+        Receta receta = new Receta("1", medico, paciente, LocalDate.now(), LocalDate.of(2026, 10, 8), 1);
+        Receta receta2 = new Receta("2", medico2, paciente2, LocalDate.now(), LocalDate.of(2027, 4, 2), 2);
+        Receta receta3 = new Receta("3", medico3, paciente3, LocalDate.now(), LocalDate.of(2028, 3, 20), 3);
+
+        Medicamento medicamento = new Medicamento("aspirina", "100mg", "123");
+        Medicamento medicamento1 = new Medicamento("Gravol", "Frasco liqyuido", "321");
+
+        DetalleMedicamento detalleMedicamento2 = new DetalleMedicamento(medicamento1, "654321", 4, 1, "Tomar solamente cuando hay mareos");
+        DetalleMedicamento detalleMedicamento = new DetalleMedicamento(medicamento, "123456", 8, 4, "Tomar por 4 dias cada noche");
 
         receta.insertarDetalleMedicamento(detalleMedicamento);
         receta.insertarDetalleMedicamento(detalleMedicamento2);
         receta2.insertarDetalleMedicamento(detalleMedicamento2);
         receta3.insertarDetalleMedicamento(detalleMedicamento);
 
-        System.out.println(receta.toString());
-
+        // === Listas ===
         ListaRecetas listaRecetas = new ListaRecetas();
         listaRecetas.insertarReceta(receta);
         listaRecetas.insertarReceta(receta2);
         listaRecetas.insertarReceta(receta3);
 
         ListaPacientes listaPacientes = new ListaPacientes();
-        ListaPersonal listaPersonales=new ListaPersonal();
+        ListaPersonal listaPersonales = new ListaPersonal();
 
-        listaPacientes.insertarPaciente(paciente,listaPersonales.existePersonalConEseID(paciente.getId()));
-        listaPacientes.insertarPaciente(paciente2,listaPersonales.existePersonalConEseID(paciente2.getId()));
-        listaPacientes.insertarPaciente(paciente3,listaPersonales.existePersonalConEseID(paciente3.getId()));
+        listaPacientes.insertarPaciente(paciente, listaPersonales.existePersonalConEseID(paciente.getId()));
+        listaPacientes.insertarPaciente(paciente2, listaPersonales.existePersonalConEseID(paciente2.getId()));
+        listaPacientes.insertarPaciente(paciente3, listaPersonales.existePersonalConEseID(paciente3.getId()));
 
-        ListaMedicamentos listaMedicamentos=new ListaMedicamentos();
+        ListaMedicamentos listaMedicamentos = new ListaMedicamentos();
         listaMedicamentos.insertarMedicamento(medicamento);
         listaMedicamentos.insertarMedicamento(medicamento1);
 
         hospi.getPersonal().insertarPersonal(medico, listaPacientes.existeAlguienConEseID(medico.getId()));
-        hospi.getPersonal().insertarPersonal(medico2,listaPacientes.existeAlguienConEseID(medico2.getId()));
-        hospi.getPersonal().insertarPersonal(medico3,listaPacientes.existeAlguienConEseID(medico3.getId()));
-        hospi.getPersonal().insertarPersonal(admin1,listaPacientes.existeAlguienConEseID(admin1.getId()));
-        hospi.getPersonal().insertarPersonal(farmaceuta,listaPacientes.existeAlguienConEseID(farmaceuta.getId()));
-        hospi.getPersonal().insertarPersonal(farmaceuta2,listaPacientes.existeAlguienConEseID(farmaceuta.getId()));
-
-
+        hospi.getPersonal().insertarPersonal(medico2, listaPacientes.existeAlguienConEseID(medico2.getId()));
+        hospi.getPersonal().insertarPersonal(medico3, listaPacientes.existeAlguienConEseID(medico3.getId()));
+        hospi.getPersonal().insertarPersonal(admin1, listaPacientes.existeAlguienConEseID(admin1.getId()));
+        hospi.getPersonal().insertarPersonal(farmaceuta, listaPacientes.existeAlguienConEseID(farmaceuta.getId()));
+        hospi.getPersonal().insertarPersonal(farmaceuta2, listaPacientes.existeAlguienConEseID(farmaceuta.getId()));
+/*
         hospi.setMedicamentos(listaMedicamentos);
         hospi.setRecetas(listaRecetas);
         hospi.setPacientes(listaPacientes);
+*/
+        // === Guardar todo en XML ===
         hospi.guradarPersonal();
+        hospi.guardarPacientes();
+        hospi.guardarMedicamentos();
+        hospi.guardarRecetas();
 
+        // === Mostrar lo cargado/guardado ===
         System.out.println(hospi.getRecetas().mostrarTodasLasRecetas());
         System.out.println(hospi.getMedicamentos().mostrarTodosLosMedicamentos());
         System.out.println(hospi.getPacientes().mostrarTodosLosPacientes());
         System.out.println(hospi.getPersonal().mostrarTodoElPersonal());
-
-
-
-
-
-
     }
 
 }
