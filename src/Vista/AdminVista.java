@@ -13,7 +13,7 @@ public class AdminVista extends JFrame {
     private JPanel PanelMedico;
     private JPanel PanelFarmaceutico;
     private JPanel Pacientes;
-    private JPanel Meidcamentos;
+    private JPanel Medicamentos1;
     private JPanel PanelDashboard;
     private JPanel Datos;
     private JLabel Desde;
@@ -59,18 +59,55 @@ public class AdminVista extends JFrame {
     private JTable tableHistoricoMedicamentos;
     private JPanel Historial;
     private JPanel FormatoFarmaceutico;
-    private JTextField textField2;
+    private JTextField campoNombreFarma;
     private JButton guardarButton;
     private JButton limpiarButton;
-    private JTextField textField4;
+    private JTextField campoEspecialidadFarma;
     private JButton borrarButton;
-    private JTextField textField1;
+    private JTextField campoIdFarma;
     private JTextField textField5;
     private JButton buscarButton;
     private JButton reporteButton;
     private JTable TablaListadofarma;
+    private JPanel FormatoPacientes;
+    private JSplitPane DivisorPantalla;
+    private JPanel PanelTExto;
+    private JPanel PanelTabla;
+    private JTable TablaPacientes;
+    private JScrollPane FormatoTabla;
+    private JLabel TextoListadoPaciente;
+    private JLabel TextoPacientes;
+    private JLabel BuscarTexto;
+    private JTextField textField6;
+    private JButton BotonBuscar;
+    private JPanel PanelInsertarFarma;
+    private JPanel PanelBusquedaFarma;
+    private JPanel PanelTablaFarma;
+    private JPanel PanelPrincipalMedicamento;
+    private JPanel PanelInsertar;
+    private JPanel PanelBusqueda;
+    private JPanel PanelTablaMedicamentos;
+    private JLabel CodigoMedicamento;
+    private JLabel Presentacion;
+    private JLabel NombreMedicamento;
+    private JTextField CampoNombreMedicamento;
+    private JButton Boton_LimpiarMedicamento;
+    private JButton BTNBorrarMedicamento;
+    private JTextField CampoCodigoMedicamento;
+    private JTextField CampoPresentacionMedicamento;
+    private JButton btnGuardarMedicamento;
+    private JLabel TextoBusquedaMedicamento;
+    private JLabel NombreMedicamentoB;
+    private JTextField CampoNombreMEdicamento;
+    private JButton BotonBuscarMedicamento;
+    private JButton ReporteMedicamento;
+    private JLabel TXTListado;
+    private JLabel MEdicamento;
+    private JTable TablaMedicamento;
     private DefaultTableModel modeloMedicos;
     private DefaultTableModel modeloFarmaceuticos;
+    private DefaultTableModel modeloPacientes;
+    private DefaultTableModel modeloMedicamentos;
 
     public AdminVista(Personal u) {
         setContentPane(JPanelPrincipal);
@@ -80,6 +117,7 @@ public class AdminVista extends JFrame {
         setLocationRelativeTo(null);
         inicializarTablaMedicos();
         inicializarTablaFarmaceuticos();
+        inicializarTablaPacientes();
     }
 
     private void inicializarTablaMedicos() {
@@ -90,8 +128,8 @@ public class AdminVista extends JFrame {
         modeloMedicos = new DefaultTableModel(null, columnas);
 
         TablaListado.setModel(modeloMedicos);
-        JTableHeader header = TablaListado.getTableHeader();
-        header.setFont(new Font("Arial", Font.BOLD, 15));
+        JTableHeader header1 = TablaListado.getTableHeader();
+        header1.setFont(new Font("Arial", Font.BOLD, 17));
     }
 
     private void inicializarTablaFarmaceuticos(){
@@ -99,12 +137,32 @@ public class AdminVista extends JFrame {
         String[] columnas = {"ID", "Nombre", "Especialidad"};
         modeloFarmaceuticos = new DefaultTableModel(null, columnas);
         TablaListadofarma.setModel(modeloFarmaceuticos);
-        JTableHeader header = TablaListadofarma.getTableHeader();
-        header.setFont(new Font("Arial", Font.BOLD, 15));
+        JTableHeader header2 = TablaListadofarma.getTableHeader();
+        header2.setFont(new Font("Arial", Font.BOLD, 17));
 
+    }
 
+    private void inicializarTablaPacientes(){
+        // Definir columnas (sin filas todavía)
+        String[] columnas = {"ID", "Nombre", "Fecha Nacimiento", "Teléfono"};
+        modeloPacientes = new DefaultTableModel(null, columnas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; //  evita edición directa en la vista
+            }
+        };
+        TablaPacientes.setModel(modeloPacientes);
 
+        // Personalizar encabezado
+        JTableHeader header = TablaPacientes.getTableHeader();
+        header.setFont(new Font("Arial", Font.BOLD, 17));
+        header.setReorderingAllowed(false); //  evitar que arrastren columnas
 
+        // Ajustes visuales de la tabla
+        TablaPacientes.setRowHeight(25); // altura de filas
+        TablaPacientes.setFont(new Font("Arial", Font.PLAIN, 15));
+        TablaPacientes.setSelectionBackground(new Color(184, 207, 229)); // color al seleccionar
+        TablaPacientes.setSelectionForeground(Color.BLACK); // color de texto al seleccionar
     }
 
     //  Getters para que la controladora pueda acceder

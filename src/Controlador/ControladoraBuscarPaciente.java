@@ -46,7 +46,7 @@ public class ControladoraBuscarPaciente {
     }
 
     private void initController() {
-        System.out.println("\n🔄 Inicializando controlador...");
+        System.out.println("\n Inicializando controlador...");
 
         try {
             modificarColumnas();
@@ -102,7 +102,7 @@ public class ControladoraBuscarPaciente {
         // Refrescar la tabla
         buscarPacienteVista.getTable1().revalidate();
         buscarPacienteVista.getTable1().repaint();
-        System.out.println("✅ Tabla refrescada");
+        System.out.println(" Tabla refrescada");
     }
 
     private void llenarComboPacientes() {
