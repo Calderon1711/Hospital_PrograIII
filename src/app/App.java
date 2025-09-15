@@ -5,6 +5,7 @@ import javax.swing.*;
 import Controlador.ControladorGeneral;
 import Controlador.ControladorLogin;
 import Modelo.Hospital;
+import Vista.FarmaceuticoVista;
 import Vista.LoginVista1;
 
 import java.awt.event.WindowAdapter;

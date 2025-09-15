@@ -10,13 +10,18 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 
+
 public class ControladorFarmaceutico {
     private FarmaceuticoVista vista;
     private ListaRecetas listaRecetas;
+    private static Hospital hospital=Hospital.getInstance();
+    private ListaRecetas listaRecetas2;
 
-    public ControladorFarmaceutico(FarmaceuticoVista vista,ListaRecetas listaRecetas) {
+    public ControladorFarmaceutico(FarmaceuticoVista vista, Personal personalFarma) {
         this.vista = vista;
-        this.listaRecetas = listaRecetas;
+        this.listaRecetas = hospital.getRecetas();
+
+        System.out.println("Farmaceutico Vista Iniciada");
 
         this.vista.onBuscar(this::buscarRecetas);
         this.vista.onLimpiar(this::limpiarTabla);

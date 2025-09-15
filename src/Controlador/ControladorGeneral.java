@@ -8,6 +8,8 @@ import Vista.FarmaceuticoVista;
 import Vista.MedicoVista;
 import Modelo.Hospital;
 import Modelo.Personal;
+import Controlador.*;
+
 public class ControladorGeneral {
 
     public void abrirVistaPorRol(Personal u) {
@@ -24,6 +26,7 @@ public class ControladorGeneral {
                 break;
             case FARMACEUTICO:
                 FarmaceuticoVista vf = new FarmaceuticoVista(u);
+                new ControladorFarmaceutico(vf,u);
                 vf.setLocationRelativeTo(null);
                 vf.setVisible(true);
                 break;
