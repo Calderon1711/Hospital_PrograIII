@@ -224,9 +224,4 @@ public class Receta {
                 ", detalleMedicamentos=" + this.mostrarTodosLosDetalles() + '\n' +
                 '}';
     }
-
-
-
-
-
 }

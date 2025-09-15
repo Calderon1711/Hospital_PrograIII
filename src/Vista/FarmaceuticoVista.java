@@ -61,7 +61,6 @@ public class FarmaceuticoVista extends JFrame {
         tabRecetas.getSelectionModel().addListSelectionListener(this::onRecetaSeleccionada);
 
         actualizarBotones(null);
-        cargarDatosDemo();
     }
 
     private void onRecetaSeleccionada(ListSelectionEvent e) {
@@ -262,34 +261,4 @@ public class FarmaceuticoVista extends JFrame {
             };
         }
     }
-
-    // ==== Datos de prueba ====
-    private void cargarDatosDemo() {
-        List<DetalleRow> d1 = List.of(
-                new DetalleRow("AC500", "Acetaminofén", "500mg", 20, "1 cada 8h", 5),
-                new DetalleRow("IB200", "Ibuprofeno", "200mg", 15, "1 cada 12h", 5)
-        );
-        List<DetalleRow> d2 = List.of(
-                new DetalleRow("AM500", "Amoxicilina", "500mg", 21, "1 cada 8h", 7)
-        );
-        List<RecetaRow> rx = List.of(
-                new RecetaRow("R-1023", "Carlos Pérez", LocalDate.now().minusDays(1),
-                        LocalDate.now(), "CONFECCIONADA", "Dra. Campos", d1),
-                new RecetaRow("R-1024", "Ana Gómez", LocalDate.now(),
-                        LocalDate.now().plusDays(1), "PROCESO", "Dr. Mora", d2),
-                new RecetaRow("R-1025", "Luis Rojas", LocalDate.now().minusDays(2),
-                        LocalDate.now().plusDays(2), "LISTA", "Dra. Solís", List.of())
-        );
-        setUsuario("farma1");
-        setRecetas(rx);
-        lblListo.setText("Demo cargado. Conecta el repositorio para datos reales.");
-    }
-        public static void main(String[] args) {
-            // Esto asegura que la GUI corra en el hilo de eventos de Swing
-            SwingUtilities.invokeLater(() -> {
-                FarmaceuticoVista vista = new FarmaceuticoVista(null);
-                vista.setVisible(true);
-            });
-        }
-
 }
