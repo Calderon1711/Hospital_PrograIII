@@ -106,7 +106,13 @@ public class ControladorMedico extends JFrame {
         controladoraBuscarPaciente.mostrarVentana();
     }
 
-    private void agregarMedicamento(){}
+    private void agregarMedicamento(){
+
+
+
+        Medicamento m1=new Medicamento();
+        hospi.getMedicamentos().insertarMedicamento(m1);
+    }
 
 
     private void guardarReceta() {
@@ -115,7 +121,7 @@ public class ControladorMedico extends JFrame {
 
 
         Receta r1 = new Receta();
-//        hospi.insertarRecetaaLista(r1);
+        hospi.getRecetas().insertarReceta(r1);
 
 
     }
@@ -180,6 +186,10 @@ public class ControladorMedico extends JFrame {
         }
 
         // Inicializar combobox de medicamentos
+        List<Medicamento> lista = hospi.getMedicamentos().getMedicamentos();
+        for(Medicamento m : lista){
+
+        }
         String[] medicamentos = {"Acetaminofen", "Amoxicilina", "Ibuprofeno", "Paracetamol"};
         for (String med : medicamentos) {
             vista.getCmbMedicamento().addItem(med);
