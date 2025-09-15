@@ -40,7 +40,7 @@ public class ControladorFarmaceutico {
             return;
         }
         Receta r=listaRecetas.getRecetaPorID(row.id);
-        if (r != null ) {
+        if (r == null ) {
             JOptionPane.showMessageDialog(vista, "No se encontro la receta seleccionada", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }

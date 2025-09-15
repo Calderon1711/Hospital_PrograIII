@@ -203,10 +203,10 @@ public class Receta {
 
     public String obtenerNombreEstado(int estado) {
         switch (estado) {
-            case 1: return "Procesada";
-            case 2: return "Confeccionada";
-            case 3: return "Lista";
-            case 4: return "Entregada";
+            case 1: return "PROCESO";
+            case 2: return "CONFECCIONADA";
+            case 3: return "LISTA";
+            case 4: return "ENTREGADA";
             default: return "Desconocido";
         }
     }

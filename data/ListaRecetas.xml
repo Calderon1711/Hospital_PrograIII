@@ -40,7 +40,7 @@
     </Detalles>
   </Receta>
   <Receta id="4">
-    <Paciente id="486543" nombre="gabriel"/>
+    <Paciente id="505050" nombre="Raul"/>
     <Personal id="151444" nombre="Fabiola"/>
     <FechaPrescripcion>2025-09-14</FechaPrescripcion>
     <FechaRetiro>2025-03-20</FechaRetiro>
