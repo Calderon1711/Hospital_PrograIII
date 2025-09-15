@@ -63,6 +63,7 @@ public class ControladorMedico extends JFrame {
 
             //Pestana Historico
             activarDatosHistorico();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -102,8 +103,6 @@ public class ControladorMedico extends JFrame {
         vista.getTablaMedicamentos().setModel(modeloTablaMedicamentos);
         vista.getScrollPaneMedicamentos().setViewportView(vista.getTablaMedicamentos());
     }
-
-
 
     private void agregarMedicamento() {
         if(controladorDetalleMedicamento==null) {
