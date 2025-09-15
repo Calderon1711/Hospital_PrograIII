@@ -32,6 +32,7 @@ public class ControladorGeneral {
                 break;
             case ADMINISTRADOR:
                 AdminVista va = new AdminVista(u);
+                new ControladoraAdmin(va,u);
                 va.setLocationRelativeTo(null);
                 va.setVisible(true);
                 break;

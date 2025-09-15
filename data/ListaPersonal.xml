@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <personal>
-    <persona tipo="Medico">
-        <id>med001</id>
-        <nombre>Ana Morales</nombre>
-        <clave>1234</clave>
-        <rol>MEDICO</rol>
-        <especialidad>Pediatría</especialidad>
-    </persona>
-    
-    <persona tipo="Farmaceuta">
-        <id>far001</id>
-        <nombre>Carlos Rojas</nombre>
-        <clave>abcd</clave>
-        <rol>FARMACEUTICO</rol>
-    </persona>
-    
     <persona tipo="Administrador">
         <id>adm001</id>
         <nombre>Laura González</nombre>
@@ -64,6 +49,29 @@
         <id>12</id>
         <nombre>moni</nombre>
         <clave>67</clave>
+        <rol>FARMACEUTICO</rol>
+    </persona>
+    
+    <persona tipo="Medico">
+        <id>676767</id>
+        <nombre>Sosa</nombre>
+        <clave>676767</clave>
+        <rol>MEDICO</rol>
+        <especialidad>crack</especialidad>
+    </persona>
+    
+    <persona tipo="Medico">
+        <id>123</id>
+        <nombre>Xavi</nombre>
+        <clave>123</clave>
+        <rol>MEDICO</rol>
+        <especialidad>sangre</especialidad>
+    </persona>
+    
+    <persona tipo="Farmaceuta">
+        <id>456</id>
+        <nombre>Thamy</nombre>
+        <clave>456</clave>
         <rol>FARMACEUTICO</rol>
     </persona>
     
