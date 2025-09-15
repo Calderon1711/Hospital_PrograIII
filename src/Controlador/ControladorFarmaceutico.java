@@ -33,6 +33,8 @@ public class ControladorFarmaceutico {
         refrescarTabla();
 
     }
+
+
     private void iniciarProceso(){
         FarmaceuticoVista.RecetaRow row=vista.getRecetaSeleccionada();
         if(row==null){
@@ -106,33 +108,46 @@ public class ControladorFarmaceutico {
             return;
         }
 
-        List<Receta> base=new ArrayList<>(listaRecetas.getRecetas());
+        List<Receta> base = new ArrayList<>(listaRecetas.getRecetas());
         String q = texto.toLowerCase(Locale.ROOT).trim();
 
-        List<Receta> filtradas=switch (filtro==null? "":filtro.toLowerCase(Locale.ROOT)) {
-            case "id", "#receta", "codigo"->base.stream()
-                    .filter(r->r.getId()!=null && r.getId().toLowerCase(Locale.ROOT).contains(q))
+        List<Receta> filtradas = switch (filtro == null ? "" : filtro.toLowerCase(Locale.ROOT)) {
+            // Busca por ID de RECETA (#Receta)
+            case "id receta", "#receta", "codigo", "receta" -> base.stream()
+                    .filter(r -> r.getId() != null && r.getId().toLowerCase(Locale.ROOT).contains(q))
                     .collect(Collectors.toList());
-            case "paciente", "nombre"->base.stream()
-                    .filter(r->r.getPaciente()!=null
-                            && r.getPaciente().getNombre()!=null
+
+            // 👉 NUEVO: busca por ID de PACIENTE (tu combo dice "ID Paciente")
+            case "id paciente", "paciente id", "id" -> base.stream()
+                    .filter(r -> r.getPaciente() != null
+                            && r.getPaciente().getId() != null
+                            && r.getPaciente().getId().toLowerCase(Locale.ROOT).contains(q))
+                    .collect(Collectors.toList());
+
+            // Por nombre del paciente (si algún día agregas la opción)
+            case "paciente", "nombre" -> base.stream()
+                    .filter(r -> r.getPaciente() != null
+                            && r.getPaciente().getNombre() != null
                             && r.getPaciente().getNombre().toLowerCase(Locale.ROOT).contains(q))
                     .collect(Collectors.toList());
+
+            // Si no coincide, no filtra
             default -> base;
         };
 
         boolean fConf = vista.isEstadoConfeccionada();
-        boolean fProc= vista.isEstadoProceso();
-        boolean fLista= vista.isEstadoLista();
+        boolean fProc = vista.isEstadoProceso();
+        boolean fLista = vista.isEstadoLista();
 
-        if(fConf||fProc||fLista){
-            filtradas=filtradas.stream()
-                    .filter(r->
-                            (fConf && r.getEstado()==2)||
-                            (fProc && r.getEstado()==1)||
-                            (fLista && r.getEstado()==3))
+        if (fConf || fProc || fLista) {
+            filtradas = filtradas.stream()
+                    .filter(r ->
+                            (fConf && r.getEstado() == 2) ||
+                                    (fProc && r.getEstado() == 1) ||
+                                    (fLista && r.getEstado() == 3))
                     .collect(Collectors.toList());
         }
+
         setTablaDesdeModelo(filtradas);
     }
     private void refrescarTabla() {
@@ -180,6 +195,7 @@ public class ControladorFarmaceutico {
             }
             filas.add(new FarmaceuticoVista.RecetaRow(
                     r.getId(),
+                    (r.getPaciente()!=null? r.getPaciente().getId():""),
                     paciente,
                     r.getFechaPrescripcion(),
                     r.getFechaRetiro(),
@@ -189,13 +205,6 @@ public class ControladorFarmaceutico {
             ));
         }
         return filas;
-    }
-    private Receta buscarRecetaPorId(String id){
-        if(id==null) return null;
-        for(Receta r: listaRecetas.getRecetas()){
-            if(id.equalsIgnoreCase(r.getId())) return r;
-        }
-        return null;
     }
     private boolean estaEnVentanaRetiro(LocalDate fechaRetiro, int dias){
         if(fechaRetiro==null)return false;

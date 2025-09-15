@@ -142,9 +142,10 @@ public class FarmaceuticoVista extends JFrame {
     public void onEntregar(Runnable r) { botEntregar.addActionListener(e -> r.run()); }
     public void onRefrescar(Runnable r) { botRefrescar.addActionListener(e -> r.run()); }
 
-    // ==== View-Models ====
+
     public static class RecetaRow {
         public final String id;
+        public final String pacienteId;
         public final String paciente;
         public final LocalDate fechaConfeccion;
         public final LocalDate fechaRetiro;
@@ -152,10 +153,11 @@ public class FarmaceuticoVista extends JFrame {
         public final String medico;
         public final List<DetalleRow> detalles;
 
-        public RecetaRow(String id, String paciente, LocalDate fechaConfeccion,
+        public RecetaRow(String id, String pacienteId,String paciente, LocalDate fechaConfeccion,
                          LocalDate fechaRetiro, String estado, String medico,
                          List<DetalleRow> detalles) {
             this.id = id;
+            this.pacienteId = pacienteId;
             this.paciente = paciente;
             this.fechaConfeccion = fechaConfeccion;
             this.fechaRetiro = fechaRetiro;
@@ -187,7 +189,7 @@ public class FarmaceuticoVista extends JFrame {
     // ==== TableModels ====
     private static class RecetaTableModel extends AbstractTableModel {
         // 6 columnas (incluye F. Retiro)
-        private final String[] cols = {"#Receta", "Paciente", "F. Confección", "F. Retiro", "Estado", "Médico"};
+        private final String[] cols = {"#Receta","Paciente ID", "Paciente", "F. Confección", "F. Retiro", "Estado", "Médico"};
         private final List<RecetaRow> rows = new ArrayList<>();
 
         public void setRows(List<RecetaRow> nuevas) {
@@ -207,11 +209,12 @@ public class FarmaceuticoVista extends JFrame {
             RecetaRow x = rows.get(r);
             return switch (c) {
                 case 0 -> x.id;
-                case 1 -> x.paciente;
-                case 2 -> x.fechaConfeccion;
-                case 3 -> x.fechaRetiro;
-                case 4 -> x.estado;
-                case 5 -> x.medico;
+                case 1->x.pacienteId;
+                case 2 -> x.paciente;
+                case 3 -> x.fechaConfeccion;
+                case 4 -> x.fechaRetiro;
+                case 5 -> x.estado;
+                case 6 -> x.medico;
                 default -> "";
             };
         }
@@ -219,7 +222,7 @@ public class FarmaceuticoVista extends JFrame {
         @Override
         public Class<?> getColumnClass(int c) {
             return switch (c) {
-                case 2, 3 -> LocalDate.class;
+                case 3, 4 -> LocalDate.class;
                 default -> String.class;
             };
         }
