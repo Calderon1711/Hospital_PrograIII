@@ -63,7 +63,7 @@
     <persona tipo="Farmaceuta">
         <id>12</id>
         <nombre>moni</nombre>
-        <clave>123789</clave>
+        <clave>67</clave>
         <rol>FARMACEUTICO</rol>
     </persona>
     

@@ -10,8 +10,8 @@ import java.util.Arrays;
 
 public class ControladorLogin {
     private final LoginVista1 vista;
-
     private final ControladorGeneral appController;
+    private Hospital hospi=Hospital.getInstance();
 
     public ControladorLogin(LoginVista1 vista, ControladorGeneral appController) {
         this.vista = vista;
@@ -63,8 +63,33 @@ public class ControladorLogin {
     }
 
     private void onCambiarContra() {
-        // Implementación simple por ahora
-        JOptionPane.showMessageDialog(vista, "Funcionalidad de cambiar contraseña (pendiente).");
+        JTextField campoID=new JTextField();
+        JPasswordField nueva = new JPasswordField();
+        JPasswordField confirmar = new JPasswordField();
+
+        Object[] message = {
+                "ID:",campoID,
+                "Nueva contraseña:", nueva,
+                "Confirmar contraseña:", confirmar
+        };
+
+        int option = JOptionPane.showConfirmDialog(vista, message, "Cambiar contraseña", JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_OPTION) {
+            String pass1 = new String(nueva.getPassword());
+            String pass2 = new String(confirmar.getPassword());
+            String id= campoID.getText();
+
+            if (pass1.equals(pass2) && !pass1.isEmpty()) {
+                // Aquí actualizas en Hospital o en el modelo
+                Personal usuario= hospi.getPersonal().getPersonalPorID(id);
+                usuario.setClave(pass1);
+                hospi.guradarPersonal();
+                JOptionPane.showMessageDialog(vista, "Contraseña cambiada con éxito.");
+            } else {
+                JOptionPane.showMessageDialog(vista, "Las contraseñas no coinciden o están vacías.");
+            }
+        }
     }
+
 }
 
