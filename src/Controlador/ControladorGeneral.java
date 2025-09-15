@@ -18,6 +18,7 @@ public class ControladorGeneral {
         switch (rol) {
             case MEDICO:
                 MedicoVista vm = new MedicoVista(u);
+                new ControladorMedico(vm,u);
                 vm.setLocationRelativeTo(null);
                 vm.setVisible(true);
                 break;

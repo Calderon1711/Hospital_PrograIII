@@ -1,4 +1,5 @@
 package Vista;
+import Modelo.Medicamento;
 import Modelo.Usuario;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -7,6 +8,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 import java.awt.*;
@@ -420,18 +422,7 @@ public class MedicoVista extends JFrame {
     private JPanel PanelPreescribir;
     private JScrollPane ScrollPaneMedicamentos;
 
-    public void ModificarTablaMedicamentos() {
-        String[] columnas = {"Medicamento", "Presentación", "Cantidad", "Indicaciones", "Duración (días)"};
 
-        // Crear modelo vacío con solo columnas
-        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
-
-        // Asignar el modelo a la tabla
-        tablaMedicamentos.setModel(modelo);
-
-        // Asegurarte de que la tabla esté dentro del JScrollPane
-        ScrollPaneMedicamentos.setViewportView(tablaMedicamentos);
-    }
 
 
 //=======================================================================
@@ -441,6 +432,10 @@ public class MedicoVista extends JFrame {
 //Pestaña DashBoard
     private JPanel PanelDashboard;
     private JScrollPane ScrollPaneDashBoard;
+    private JPanel PestanaHistorico;
+    private JPanel PestanaAcercaDe;
+    private JScrollPane ScrollPanelMedicamentos;
+    private JScrollPane ScrollPanelRecetas;
 
     void setPanelDashboard(JPanel panelDashboard) {
         this.PanelDashboard = panelDashboard;
@@ -450,62 +445,5 @@ public class MedicoVista extends JFrame {
         return PanelDashboard;
     }
 
-
-    public void inicializarComponentesDashboard() {
-        // Inicializar combobox con años (2020-2030)
-        for (int i = 2020; i <= 2030; i++) {
-            cmbDesdeAnnio.addItem(String.valueOf(i));
-            cmbHastaAnio.addItem(String.valueOf(i));
-        }
-
-        // Inicializar combobox con meses
-        String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-                "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-        for (String mes : meses) {
-            cmbDesdeMes.addItem(mes);
-            cmbHastaMes.addItem(mes);
-        }
-
-        // Inicializar combobox de medicamentos
-        String[] medicamentos = {"Acetaminofen", "Amoxicilina", "Ibuprofeno", "Paracetamol"};
-        for (String med : medicamentos) {
-            cmbMedicamento.addItem(med);
-        }
-
-        // Configurar año y mes actual por defecto
-        Calendar cal = Calendar.getInstance();
-        int añoActual = cal.get(Calendar.YEAR);
-        int mesActual = cal.get(Calendar.MONTH); // 0-11
-
-        cmbDesdeAnnio.setSelectedItem(String.valueOf(añoActual));
-        cmbHastaAnio.setSelectedItem(String.valueOf(añoActual));
-        cmbDesdeMes.setSelectedIndex(mesActual);
-        cmbHastaMes.setSelectedIndex(mesActual);
-    }
-
-    public void ModificarTablaDashBoard() {
-        String[] columnas = {"Medicamento"};
-
-        // Crear modelo vacío con solo columnas
-        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
-
-        // Asignar el modelo a la tabla
-        tblDatos.setModel(modelo);
-
-        // Asegurarte de que la tabla esté dentro del JScrollPane
-        ScrollPaneDashBoard.setViewportView(tblDatos);
-    }
-
-
-//=======================================================================
-// Graficos de dashboard------------------------------------------------
-
-
-//=======================================================================
-//Pestaña Historico
-
-
-//=======================================================================
-//Pestana Acerca de
 
 }

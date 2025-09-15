@@ -1,5 +1,6 @@
 package Vista;
 
+import Modelo.ListaPacientes;
 import Modelo.Personal;
 
 import javax.swing.*;
@@ -76,7 +77,7 @@ public class Buscar_Paciente extends JFrame{
     //--------------------------------------------------------------
 
 
-    public Buscar_Paciente(Personal u) {
+    public Buscar_Paciente(ListaPacientes u) {
         setContentPane(Panel1);
         setTitle("Agregar Paciente");
         setSize(400, 300);

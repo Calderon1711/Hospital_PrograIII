@@ -31,6 +31,7 @@ class main {
         Receta receta = new Receta("1", medico, paciente, LocalDate.now(), LocalDate.of(2026, 10, 8), 1);
         Receta receta2 = new Receta("2", medico2, paciente2, LocalDate.now(), LocalDate.of(2027, 4, 2), 2);
         Receta receta3 = new Receta("3", medico3, paciente3, LocalDate.now(), LocalDate.of(2028, 3, 20), 3);
+        Receta receta4 = new Receta("4", medico3, paciente3, LocalDate.now(), LocalDate.of(2025, 3, 20), 4);
 
         Medicamento medicamento = new Medicamento("aspirina", "100mg", "123");
         Medicamento medicamento1 = new Medicamento("Gravol", "Frasco liqyuido", "321");
