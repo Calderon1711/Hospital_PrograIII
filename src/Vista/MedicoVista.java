@@ -1,20 +1,7 @@
 package Vista;
-import Modelo.Medicamento;
-import Modelo.Usuario;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PiePlot;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.DefaultPieDataset;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Calendar;
 
 import Modelo.Personal;
 
@@ -344,7 +331,48 @@ public class MedicoVista extends JFrame {
     }
 
     //============================================================
-    //Mejorados
+    //
+
+    public JScrollPane getScrollPanelRecetas() {
+        return ScrollPanelRecetas;
+    }
+
+    public void setScrollPanelRecetas(JScrollPane scrollPanelRecetas) {
+        ScrollPanelRecetas = scrollPanelRecetas;
+    }
+
+    public JScrollPane getScrollPaneDashBoard() {
+        return ScrollPaneDashBoard;
+    }
+
+    public void setScrollPaneDashBoard(JScrollPane scrollPaneDashBoard) {
+        ScrollPaneDashBoard = scrollPaneDashBoard;
+    }
+
+    public JPanel getPestanaAcercaDe() {
+        return PestanaAcercaDe;
+    }
+
+    public void setPestanaAcercaDe(JPanel pestanaAcercaDe) {
+        PestanaAcercaDe = pestanaAcercaDe;
+    }
+
+    public JScrollPane getScrollPanelMedicamentos() {
+        return ScrollPanelMedicamentos;
+    }
+
+    public void setScrollPanelMedicamentos(JScrollPane scrollPanelMedicamentos) {
+        ScrollPanelMedicamentos = scrollPanelMedicamentos;
+    }
+
+    public JPanel getPestanaHistorico() {
+        return PestanaHistorico;
+    }
+
+    public void setPestanaHistorico(JPanel pestanaHistorico) {
+        PestanaHistorico = pestanaHistorico;
+    }
+
     public void setPanelPreescribir(JPanel panelPreescribir) {
         this.panelPreescribir = panelPreescribir;
     }
@@ -391,6 +419,38 @@ public class MedicoVista extends JFrame {
     private JTable tableHistoricoRecetas;
     private JTable tableHistoricoMedicamentos;
 
+    public JScrollPane getScrollPaneHistoricoRecetas() {
+        return ScrollPaneHistoricoRecetas;
+    }
+
+    public void setScrollPaneHistoricoRecetas(JScrollPane scrollPaneHistoricoRecetas) {
+        ScrollPaneHistoricoRecetas = scrollPaneHistoricoRecetas;
+    }
+
+    public JScrollPane getScrollPaneHistoricoMedicamentos() {
+        return ScrollPaneHistoricoMedicamentos;
+    }
+
+    public void setScrollPaneHistoricoMedicamentos(JScrollPane scrollPaneHistoricoMedicamentos) {
+        ScrollPaneHistoricoMedicamentos = scrollPaneHistoricoMedicamentos;
+    }
+
+    public JTable getTableHistoricoRecetas() {
+        return tableHistoricoRecetas;
+    }
+
+    public void setTableHistoricoRecetas(JTable tableHistoricoRecetas) {
+        this.tableHistoricoRecetas = tableHistoricoRecetas;
+    }
+
+    public JTable getTableHistoricoMedicamentos() {
+        return tableHistoricoMedicamentos;
+    }
+
+    public void setTableHistoricoMedicamentos(JTable tableHistoricoMedicamentos) {
+        this.tableHistoricoMedicamentos = tableHistoricoMedicamentos;
+    }
+
     //==============================================================
 
     //Botones
@@ -434,6 +494,10 @@ public class MedicoVista extends JFrame {
     private JScrollPane ScrollPaneDashBoard;
     private JPanel PestanaHistorico;
     private JPanel PestanaAcercaDe;
+    private JScrollPane ScrollPaneHistoricoRecetas;
+    private JScrollPane ScrollPaneHistoricoMedicamentos;
+    private JPanel GraficoMedicamento;
+    private JPanel graficoReceta;
     private JScrollPane ScrollPanelMedicamentos;
     private JScrollPane ScrollPanelRecetas;
 
@@ -445,5 +509,19 @@ public class MedicoVista extends JFrame {
         return PanelDashboard;
     }
 
+    public JPanel getGraficoMedicamento() {
+        return GraficoMedicamento;
+    }
 
+    public void setGraficoMedicamento(JPanel graficoMedicamento) {
+        GraficoMedicamento = graficoMedicamento;
+    }
+
+    public JPanel getGraficoReceta() {
+        return graficoReceta;
+    }
+
+    public void setGraficoReceta(JPanel graficoReceta) {
+        this.graficoReceta = graficoReceta;
+    }
 }

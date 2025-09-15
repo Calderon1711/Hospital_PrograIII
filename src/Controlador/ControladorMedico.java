@@ -1,7 +1,6 @@
 package Controlador;
 
 
-import Vista.Agregar_Medicamento;
 import Vista.MedicoVista;
 import Vista.Buscar_Paciente;
 import Modelo.*;
@@ -25,10 +24,12 @@ import java.util.List;
 
 public class ControladorMedico extends JFrame {
 
-    private final MedicoVista vista;
+    private MedicoVista vista;
     private static Hospital hospi=Hospital.getInstance();
     private ControladoraBuscarPaciente controladoraBuscarPaciente;
+    private ControladorDetalleMedicamento controladorDetalleMedicamento;
     static Personal personal;
+    private DefaultTableModel modeloTablaMedicamentos;
 
 
     //Para controlador general
@@ -50,16 +51,21 @@ public class ControladorMedico extends JFrame {
 
     public void initController() {
 
-        //Pestana preeescribir
-        activarDatosPreescribir();
-        configurarEventosPreescribir();
+        try {
+            //Pestana preeescribir
+            configurarEventosPreescribir();
+            inicializarTablaMedicamentosPreescribir();
 
-        //Pestana Dashboard
-        activarDatosDashboard();
-        configurarEventosDashboard();
+            //Pestana Dashboard
+            activarDatosDashboard();
+            configurarEventosDashboard();
+            modificarTablaDashBoard();
 
-
-
+            //Pestana Historico
+            activarDatosHistorico();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -67,18 +73,14 @@ public class ControladorMedico extends JFrame {
     //=============================================================
     //Pestana preescribir
 
-    private void activarDatosPreescribir(){
-        modificarTablaMedicamentosPreescribir();
-    }
-
     private void configurarEventosPreescribir() {
 
         //Agregar Paciente
-
         vista.getBuscarPacienteButton().addActionListener(e -> buscarPaciente());
-        vista.getNombre_del_doctor().setText("Chayanne");
-
+        //Agregar Medicamento
         vista.getAgregarMedicamentoButton().addActionListener(e -> agregarMedicamento());
+
+        vista.getNombre_del_doctor().setText("Chayanne");
 
         vista.getGuardarButton().addActionListener(e -> guardarReceta());
         vista.getLimpiarButton().addActionListener(e -> limpiarCampos());
@@ -86,36 +88,49 @@ public class ControladorMedico extends JFrame {
         vista.getDetallesButton().addActionListener(e -> mostrarDetalles());
 
     }
-    public void modificarTablaMedicamentosPreescribir() {
-        String[] columnas = {"Medicamento", "Presentación", "Cantidad", "Indicaciones", "Duración (días)"};
-
-        // Crear modelo vacío con solo columnas
-        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
-
-        // Asignar el modelo a la tabla
-        vista.getTablaMedicamentos().setModel(modelo);
-
-        // Asegurarte de que la tabla esté dentro del JScrollPane
-        vista.getScrollPaneMedicamentos().setViewportView(vista.getTablaMedicamentos());
-    }
 
     private void buscarPaciente() {
         if (controladoraBuscarPaciente == null) {
-            controladoraBuscarPaciente = new ControladoraBuscarPaciente(Hospital.getInstance());
+            controladoraBuscarPaciente = new ControladoraBuscarPaciente(hospi);
         }
         controladoraBuscarPaciente.mostrarVentana();
     }
 
-    private void agregarMedicamento(){
-
-
-
-        Medicamento m1=new Medicamento();
-        hospi.getMedicamentos().insertarMedicamento(m1);
+    public void inicializarTablaMedicamentosPreescribir() {
+        String[] columnas = {"Medicamento", "Presentación", "Cantidad", "Indicaciones", "Duración (días)"};
+        modeloTablaMedicamentos = new DefaultTableModel(columnas, 0);
+        vista.getTablaMedicamentos().setModel(modeloTablaMedicamentos);
+        vista.getScrollPaneMedicamentos().setViewportView(vista.getTablaMedicamentos());
     }
 
 
-    private void guardarReceta() {
+
+    private void agregarMedicamento() {
+        if(controladorDetalleMedicamento==null) {
+            controladorDetalleMedicamento = new ControladorDetalleMedicamento(hospi);
+        }
+        controladorDetalleMedicamento.mostrarVentana();
+
+        DetalleMedicamento nuevo = controladorDetalleMedicamento.getDetalle();
+        if (nuevo != null) {
+            agregarMedicamentoATabla(nuevo);
+        }
+    }
+
+    public void agregarMedicamentoATabla(DetalleMedicamento detalle) {
+        if (detalle != null && detalle.getMedicamento() != null && modeloTablaMedicamentos != null) {
+            modeloTablaMedicamentos.addRow(new Object[]{
+                    detalle.getMedicamento().getNombre(),
+                    detalle.getMedicamento().getPresentacion(),
+                    detalle.getCantidad(),
+                    detalle.getIndicacion(),
+                    detalle.getDuracion()
+            });
+        }
+    }
+
+
+        private void guardarReceta() {
         String fecha = vista.getFecha_de_Retiro().getText();
         String seleccion = vista.getOpciones_Fecha_de_Retiro().getSelectedItem().toString();
 
@@ -158,9 +173,9 @@ public class ControladorMedico extends JFrame {
 
     public void activarDatosDashboard() {
         inicializarComponentesDashboard();
-        modificarTablaDashBoard();
-        crearGraficoMedicamentos(vista.getMedicamentos());
-        crearGraficoRecetas(vista.getRecetas());
+        //modificarTablaDashBoard();
+        crearGraficoMedicamentos(vista.getGraficoMedicamento());
+        crearGraficoRecetas(vista.getGraficoReceta());
     }
 
     public void configurarEventosDashboard(){
@@ -206,18 +221,21 @@ public class ControladorMedico extends JFrame {
 
     public void modificarTablaDashBoard() {
         List<Medicamento> lista = hospi.getMedicamentos().getMedicamentos();
-        String[] columnas = {"Medicamento"};
+        String[] columnas = {"Nombre","Presentacion","Codigo"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
     // Agregar cada medicamento al modelo
         for (Medicamento med : lista) {
-            Object[] fila = {med.getNombre()};
+            Object[] fila = {
+                    med.getNombre(),
+                    med.getPresentacion(),
+                    med.getCodigo()
+            };
             modelo.addRow(fila);
         }
 
-    // Asignar modelo a la tabla
         vista.getTblDatos().setModel(modelo);
-        vista.getScrollPaneMedicamentos().setViewportView(vista.getTblDatos());
+        vista.getScrollPaneDashBoard().setViewportView(vista.getTblDatos());
     }
 
 
@@ -402,6 +420,62 @@ public class ControladorMedico extends JFrame {
 
         JOptionPane.showMessageDialog(vista, "Mes quitado de la tabla", "Quitar Mes", JOptionPane.INFORMATION_MESSAGE);
     }
+
+
+    //Pestana Historico
+
+    public void activarDatosHistorico() {
+        modificarTablaRecetaHistorico();
+    }
+
+    public void configurarEventosHistorico(){
+        modificarTablaMedicamentosHistorico(null);
+    }
+
+    public void modificarTablaRecetaHistorico() {
+        List<Receta> lista = hospi.getRecetas().getRecetas();
+        lista.sort(Comparator.comparing(Receta::mostrarTodosLosDetalles));
+        String[] columnas = {"Receta"};
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+
+        // Agregar cada medicamento al modelo
+        for (Receta med : lista) {
+            Object[] fila = {med.getId()};
+            modelo.addRow(fila);
+        }
+
+        // Asignar modelo a la tabla
+        vista.getTableHistoricoRecetas().setModel(modelo);
+        vista.getScrollPaneHistoricoRecetas().setViewportView( vista.getTableHistoricoRecetas());
+    }
+
+    public void modificarTablaMedicamentosHistorico(DetalleMedicamento medicamento) {
+        String[] columnas = { "#", "Medicamento", "Presentación", "Cantidad", "Duración", "Indicación" };
+
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        Medicamento med = medicamento.getMedicamento(); // ← Aquí recuperamos el medicamento
+        Object[] fila = {
+                1,
+                med.getNombre(),
+                med.getPresentacion(),
+                medicamento.getCantidad(),
+                medicamento.getDuracion(),
+                medicamento.getIndicacion()
+        };
+        modelo.addRow(fila);
+
+        JTable tabla = vista.getTableHistoricoMedicamentos();
+        tabla.setModel(modelo);
+        tabla.setAutoCreateRowSorter(true);
+        vista.getScrollPaneMedicamentos().setViewportView(tabla);
+    }
+
 
 }
 

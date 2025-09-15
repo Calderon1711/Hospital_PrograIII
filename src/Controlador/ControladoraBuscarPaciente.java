@@ -46,7 +46,7 @@ public class ControladoraBuscarPaciente {
     }
 
     private void initController() {
-        System.out.println("\n🔄 Inicializando controlador...");
+        System.out.println("Inicializando controlador...");
 
         try {
             modificarColumnas();
