@@ -34,7 +34,9 @@ class main {
         Receta receta4 = new Receta("4", medico3, paciente3, LocalDate.now(), LocalDate.of(2025, 3, 20), 4);
 
         Medicamento medicamento = new Medicamento("aspirina", "100mg", "123");
-        Medicamento medicamento1 = new Medicamento("Gravol", "Frasco liqyuido", "321");
+        Medicamento medicamento1 = new Medicamento("Gravol", "Frasco liquido", "321");
+        Medicamento medicamento2 = new Medicamento("Acetaminofen", "100mg", "456");
+        Medicamento medicamento3 = new Medicamento("Ibuprofeno", "50 mg", "654");
 
         DetalleMedicamento detalleMedicamento2 = new DetalleMedicamento(medicamento1, "654321", 4, 1, "Tomar solamente cuando hay mareos");
         DetalleMedicamento detalleMedicamento = new DetalleMedicamento(medicamento, "123456", 8, 4, "Tomar por 4 dias cada noche");
@@ -43,12 +45,14 @@ class main {
         receta.insertarDetalleMedicamento(detalleMedicamento2);
         receta2.insertarDetalleMedicamento(detalleMedicamento2);
         receta3.insertarDetalleMedicamento(detalleMedicamento);
+        receta4.insertarDetalleMedicamento(detalleMedicamento2);
 
         // === Listas ===
         ListaRecetas listaRecetas = new ListaRecetas();
         listaRecetas.insertarReceta(receta);
         listaRecetas.insertarReceta(receta2);
         listaRecetas.insertarReceta(receta3);
+        listaRecetas.insertarReceta(receta4);
 
         ListaPacientes listaPacientes = new ListaPacientes();
         ListaPersonal listaPersonales = new ListaPersonal();
@@ -60,6 +64,9 @@ class main {
         ListaMedicamentos listaMedicamentos = new ListaMedicamentos();
         listaMedicamentos.insertarMedicamento(medicamento);
         listaMedicamentos.insertarMedicamento(medicamento1);
+        listaMedicamentos.insertarMedicamento(medicamento2);
+        listaMedicamentos.insertarMedicamento(medicamento3);
+
 
         hospi.getPersonal().insertarPersonal(medico, listaPacientes.existeAlguienConEseID(medico.getId()));
         hospi.getPersonal().insertarPersonal(medico2, listaPacientes.existeAlguienConEseID(medico2.getId()));
@@ -67,11 +74,11 @@ class main {
         hospi.getPersonal().insertarPersonal(admin1, listaPacientes.existeAlguienConEseID(admin1.getId()));
         hospi.getPersonal().insertarPersonal(farmaceuta, listaPacientes.existeAlguienConEseID(farmaceuta.getId()));
         hospi.getPersonal().insertarPersonal(farmaceuta2, listaPacientes.existeAlguienConEseID(farmaceuta.getId()));
-/*
+
         hospi.setMedicamentos(listaMedicamentos);
         hospi.setRecetas(listaRecetas);
         hospi.setPacientes(listaPacientes);
-*/
+
         // === Guardar todo en XML ===
         hospi.guradarPersonal();
         hospi.guardarPacientes();

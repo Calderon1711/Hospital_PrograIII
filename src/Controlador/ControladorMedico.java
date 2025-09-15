@@ -186,13 +186,11 @@ public class ControladorMedico extends JFrame {
         }
 
         // Inicializar combobox de medicamentos
-        List<Medicamento> lista = hospi.getMedicamentos().getMedicamentos();
-        for(Medicamento m : lista){
 
-        }
-        String[] medicamentos = {"Acetaminofen", "Amoxicilina", "Ibuprofeno", "Paracetamol"};
-        for (String med : medicamentos) {
-            vista.getCmbMedicamento().addItem(med);
+        List<Medicamento> lista = hospi.getMedicamentos().getMedicamentos();
+
+        for (Medicamento med : lista) {
+            vista.getCmbMedicamento().addItem(med.getNombre());
         }
 
         // Configurar año y mes actual por defecto
@@ -207,15 +205,18 @@ public class ControladorMedico extends JFrame {
     }
 
     public void modificarTablaDashBoard() {
+        List<Medicamento> lista = hospi.getMedicamentos().getMedicamentos();
         String[] columnas = {"Medicamento"};
-
-        // Crear modelo vacío con solo columnas
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
-        // Asignar el modelo a la tabla
-        vista.getTblDatos().setModel(modelo);
+    // Agregar cada medicamento al modelo
+        for (Medicamento med : lista) {
+            Object[] fila = {med.getNombre()};
+            modelo.addRow(fila);
+        }
 
-        // Asegurarte de que la tabla esté dentro del JScrollPane
+    // Asignar modelo a la tabla
+        vista.getTblDatos().setModel(modelo);
         vista.getScrollPaneMedicamentos().setViewportView(vista.getTblDatos());
     }
 
