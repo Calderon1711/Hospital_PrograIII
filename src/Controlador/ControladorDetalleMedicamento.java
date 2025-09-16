@@ -13,14 +13,6 @@ public class ControladorDetalleMedicamento {
     private Medicamento medicamento;
     private DetalleMedicamento detalle;
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Hospital hospi = Hospital.getInstance();
-            Modificar_detalle vista = new Modificar_detalle(hospi);
-            new ControladorDetalleMedicamento(hospi);
-            vista.setVisible(true);
-        });
-    }
 
     public ControladorDetalleMedicamento(Hospital hospital) {
 

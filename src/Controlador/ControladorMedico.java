@@ -40,16 +40,6 @@ public class ControladorMedico extends JFrame {
         initController();
     }
 
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            MedicoVista medicoVista = new MedicoVista(personal);
-            new ControladorMedico(medicoVista, personal);
-            medicoVista.setVisible(true);
-        });
-    }
-
-
     public void initController() {
 
         try {
