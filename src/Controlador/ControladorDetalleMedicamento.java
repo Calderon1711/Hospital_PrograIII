@@ -67,9 +67,7 @@ public class ControladorDetalleMedicamento {
     }
 
     public void configurarBotonGuardar() {
-
         modificarDetalleVista.getGuardarButton().addActionListener(e -> {
-            // Obtener datos de la vista
             String nombre = modificarDetalleVista.getTextFieldMedicamento().getText().trim();
             String presentacion = modificarDetalleVista.getTextFieldPresentacion().getText().trim();
             String codigo = modificarDetalleVista.getTextFieldCodigo().getText().trim();
@@ -78,31 +76,34 @@ public class ControladorDetalleMedicamento {
             Integer cantidad = (Integer) modificarDetalleVista.getComboBoxCantidad().getSelectedItem();
             Integer duracion = (Integer) modificarDetalleVista.getComboBoxdias().getSelectedItem();
 
-            // Validación básica
             if (nombre.isEmpty() || presentacion.isEmpty() || codigo.isEmpty() || indicacion.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Por favor completa todos los campos obligatorios.");
                 return;
             }
 
-            // Crear objeto Medicamento
+            // Crear objetos
+            Medicamento medicamento = new Medicamento();
             medicamento.setCodigo(codigo);
             medicamento.setNombre(nombre);
             medicamento.setPresentacion(presentacion);
 
-            // Crear objeto DetalleMedicamento
+            DetalleMedicamento detalle = new DetalleMedicamento();
             detalle.setCantidad(cantidad);
             detalle.setMedicamento(medicamento);
             detalle.setIdDetalle(codigo);
             detalle.setDuracion(duracion);
             detalle.setIndicacion(indicacion);
 
-            // Aquí podrías guardar el detalle en el hospital o actualizar la vista
-            hospi.getMedicamentos().insertarMedicamento(medicamento);
 
-            //Agregar a tabla
-            JOptionPane.showMessageDialog(modificarDetalleVista, "Medicamento insertado exitosamente.","Medicamento",JOptionPane.INFORMATION_MESSAGE);
+            this.medicamento = medicamento;
+            this.detalle = detalle;
 
-            actualizarDatos();
+            JOptionPane.showMessageDialog(modificarDetalleVista,
+                    "Medicamento agregado a la receta.",
+                    "Medicamento",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+            modificarDetalleVista.dispose();
         });
     }
     public void cancelar(){

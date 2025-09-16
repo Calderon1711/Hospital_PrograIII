@@ -105,15 +105,26 @@ public class ControladorMedico extends JFrame {
     }
 
     private void agregarMedicamento() {
-        if(controladorDetalleMedicamento==null) {
-            controladorDetalleMedicamento = new ControladorDetalleMedicamento(hospi);
-        }
-        controladorDetalleMedicamento.mostrarVentana();
+        ControladorDetalleMedicamento ctrlDet = new ControladorDetalleMedicamento(hospi);
 
-        DetalleMedicamento nuevo = controladorDetalleMedicamento.getDetalle();
-        if (nuevo != null) {
-            agregarMedicamentoATabla(nuevo);
-        }
+        // Enganchar evento de cierre
+        ctrlDet.getVista().addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                DetalleMedicamento nuevo = ctrlDet.getDetalle();
+                if (nuevo != null) {
+                    agregarMedicamentoATabla(nuevo);
+                }
+            }
+
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                // Aqui aseguramos que también entre cuando se cierra con la X
+                windowClosed(e);
+            }
+        });
+
+        ctrlDet.mostrarVentana();
     }
 
     public void agregarMedicamentoATabla(DetalleMedicamento detalle) {
@@ -127,17 +138,53 @@ public class ControladorMedico extends JFrame {
             });
         }
     }
-
-
         private void guardarReceta() {
-        String fecha = vista.getFecha_de_Retiro().getText();
-        String seleccion = vista.getOpciones_Fecha_de_Retiro().getSelectedItem().toString();
+            try {
+                Paciente paciente = (controladoraBuscarPaciente != null)
+                        ? controladoraBuscarPaciente.getPacienteSeleccionado()
+                        : null;
+                if (paciente == null) {
+                    JOptionPane.showMessageDialog(vista, "Debe seleccionar un paciente.");
+                    return;
+                }
 
+                List<DetalleMedicamento> detalles = new ArrayList<>();
+                for (int i = 0; i < modeloTablaMedicamentos.getRowCount(); i++) {
+                    String nombre = modeloTablaMedicamentos.getValueAt(i, 0).toString();
+                    String presentacion = modeloTablaMedicamentos.getValueAt(i, 1).toString();
+                    int cantidad = Integer.parseInt(modeloTablaMedicamentos.getValueAt(i, 2).toString());
+                    String indicaciones = modeloTablaMedicamentos.getValueAt(i, 3).toString();
+                    int dias = Integer.parseInt(modeloTablaMedicamentos.getValueAt(i, 4).toString());
 
-        Receta r1 = new Receta();
-        hospi.getRecetas().insertarReceta(r1);
+                    Medicamento med = hospi.getMedicamentos().buscarPorNombreYPresentacion(nombre, presentacion);
+                    if (med != null) {
+                        detalles.add(new DetalleMedicamento(med, cantidad, indicaciones, dias));
+                    }
+                }
 
+                if (detalles.isEmpty()) {
+                    JOptionPane.showMessageDialog(vista, "Debe agregar al menos un medicamento.");
+                    return;
+                }
 
+                String idReceta = "R" + (hospi.getRecetas().getRecetas().size() + 1);
+                LocalDate hoy = LocalDate.now();
+                LocalDate fechaRetiro = hoy.plusDays(3);
+
+                Receta receta = new Receta(idReceta, personal, paciente, hoy, fechaRetiro, 2);
+                receta.getDetalleMedicamentos().addAll(detalles);
+
+                hospi.getRecetas().insertarReceta(receta);
+                JOptionPane.showMessageDialog(vista, "Receta " + receta.getId() + " guardada con éxito.");
+
+                modeloTablaMedicamentos.setRowCount(0);
+                vista.getFecha_de_Retiro().setText("");
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(vista, "Error al guardar receta: " + ex.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
     }
 
     private void limpiarCampos() {

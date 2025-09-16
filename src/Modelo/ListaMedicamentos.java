@@ -113,4 +113,13 @@ public class ListaMedicamentos {
                 "Presentación: " + medicamento.getPresentacion();
     }
 
+    public Medicamento buscarPorNombreYPresentacion(String nombre, String presentacion) {
+        for(Medicamento med : medicamentos){
+            if(med.getNombre().equalsIgnoreCase(nombre) && med.getPresentacion().equalsIgnoreCase(presentacion)){
+                return med;
+            }
+        }
+        return null;
+    }
+
 }

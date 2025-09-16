@@ -7,6 +7,8 @@ public class DetalleMedicamento {
     private int duracion;
     private String indicacion;
 
+    public DetalleMedicamento() {}
+
     public DetalleMedicamento(Medicamento medicamento, String idDetalle, int cantidad, int duracion, String indicacion) {
         this.medicamento = medicamento;
         this.idDetalle = idDetalle;
@@ -24,7 +26,7 @@ public class DetalleMedicamento {
         this.medicamento = new Medicamento(); //Acá es donde se llama al hospital.getMedicamentoPorCodigo(). Ya que para la vista se trabaja así.
     }
 
-    public DetalleMedicamento() {
+    public DetalleMedicamento(Medicamento med, int cantidad, String indicaciones, int dias) {
 
     }
 
