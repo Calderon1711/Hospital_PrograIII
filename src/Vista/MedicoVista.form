@@ -109,7 +109,7 @@
                   </hspacer>
                   <component id="f024" class="javax.swing.JButton" binding="guardarButton" default-binding="true">
                     <constraints>
-                      <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <icon value="Imagenes_Luis/guardar.png"/>
@@ -118,7 +118,7 @@
                   </component>
                   <component id="1d24b" class="javax.swing.JButton" binding="limpiarButton" default-binding="true">
                     <constraints>
-                      <grid row="12" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="12" column="2" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <icon value="Imagenes_Luis/borrar.png"/>
@@ -127,7 +127,7 @@
                   </component>
                   <component id="2b683" class="javax.swing.JButton" binding="descartarMedicamentoButton" default-binding="true">
                     <constraints>
-                      <grid row="12" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="12" column="3" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <icon value="Imagenes_Luis/descartar-archivo.png"/>
@@ -136,7 +136,7 @@
                   </component>
                   <component id="90bac" class="javax.swing.JButton" binding="detallesButton" default-binding="true">
                     <constraints>
-                      <grid row="12" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="12" column="4" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <hideActionText value="false"/>
@@ -327,7 +327,7 @@
               </grid>
               <component id="ad83f" class="javax.swing.JButton" binding="btnAgregarMesButton" default-binding="true">
                 <constraints>
-                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <icon value="Imagenes_Luis/agregar.png"/>
@@ -336,7 +336,7 @@
               </component>
               <component id="a7ddb" class="javax.swing.JButton" binding="btnQuitarMesButton" default-binding="true">
                 <constraints>
-                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <icon value="Imagenes_Luis/borrar.png"/>

@@ -637,7 +637,7 @@ public class ControladorMedico extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = GridBagConstraints.RELATIVE; // cada componente en nueva fila
-        gbc.anchor = GridBagConstraints.CENTER;  // todo centrado
+        gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(5, 5, 5, 5); // margen entre componentes
 
         // Recorremos y volvemos a agregar los componentes ya existentes
