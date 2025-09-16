@@ -1,8 +1,6 @@
 package Vista;
 import javax.swing.*;
 
-import java.awt.*;
-
 import Modelo.Personal;
 
 public class MedicoVista extends JFrame {
@@ -496,6 +494,11 @@ public class MedicoVista extends JFrame {
     private JPanel GraficoMedicamento;
     private JPanel graficoReceta;
     private JLabel FechaRetiro;
+    private JLabel Nombre;
+    private JLabel Vicente;
+    private JLabel Numero;
+    private JPanel Principal;
+    private JPanel Panelcito;
     private JScrollPane ScrollPanelMedicamentos;
     private JScrollPane ScrollPanelRecetas;
 
@@ -521,5 +524,48 @@ public class MedicoVista extends JFrame {
 
     public void setGraficoReceta(JPanel graficoReceta) {
         this.graficoReceta = graficoReceta;
+    }
+
+    //Pestana acerca de
+
+
+    public JLabel getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(JLabel nombre) {
+        Nombre = nombre;
+    }
+
+    public JLabel getVicente() {
+        return Vicente;
+    }
+
+    public void setVicente(JLabel vicente) {
+        Vicente = vicente;
+    }
+
+    public JPanel getPrincipal() {
+        return Principal;
+    }
+
+    public void setPrincipal(JPanel principal) {
+        Principal = principal;
+    }
+
+    public JLabel getNumero() {
+        return Numero;
+    }
+
+    public void setNumero(JLabel numero) {
+        Numero = numero;
+    }
+
+    public JPanel getPanelcito() {
+        return Panelcito;
+    }
+
+    public void setPanelcito(JPanel panelcito) {
+        Panelcito = panelcito;
     }
 }

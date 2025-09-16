@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Vista.MedicoVista">
   <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="1008" height="642"/>
+      <xy x="20" y="20" width="1314" height="1105"/>
     </constraints>
     <properties>
       <enabled value="true"/>
@@ -468,28 +468,44 @@
             <properties/>
             <border type="none"/>
             <children>
-              <grid id="5f323" layout-manager="BorderLayout" hgap="0" vgap="0">
+              <grid id="5f323" binding="Principal" layout-manager="BorderLayout" hgap="0" vgap="0">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="206c2" class="javax.swing.JLabel">
-                    <constraints border-constraint="North"/>
-                    <properties>
-                      <font name="Broadway" size="36" style="1"/>
-                      <text value="Preescripcion y despacho de recetas"/>
-                      <verticalTextPosition value="1"/>
-                    </properties>
-                  </component>
-                  <component id="5cc53" class="javax.swing.JLabel" binding="fotoHospital">
+                  <grid id="2e170" binding="Panelcito" layout-manager="BorderLayout" hgap="0" vgap="0">
                     <constraints border-constraint="Center"/>
-                    <properties>
-                      <icon value="Resources/Icons/r096x9_large.png"/>
-                      <text value=""/>
-                    </properties>
-                  </component>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="6643e" class="javax.swing.JLabel" binding="Nombre">
+                        <constraints border-constraint="North"/>
+                        <properties>
+                          <background color="-12828863"/>
+                          <enabled value="false"/>
+                          <font name="Arial Rounded MT Bold" size="36"/>
+                          <text value="Preescripcion y Despacho de Recetas"/>
+                          <verticalAlignment value="0"/>
+                        </properties>
+                      </component>
+                      <component id="e9339" class="javax.swing.JLabel" binding="Vicente">
+                        <constraints border-constraint="West"/>
+                        <properties>
+                          <icon value="Imagenes_Luis/lindo.jpg"/>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <component id="42006" class="javax.swing.JLabel" binding="Numero">
+                        <constraints border-constraint="South"/>
+                        <properties>
+                          <font name="Arial Rounded MT Bold" size="16"/>
+                          <text value="Direccion: 700 m. sur del Estadio Eladio Rosabal Cordero, Heredia.             Numero: 2562 8100"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
                 </children>
               </grid>
             </children>

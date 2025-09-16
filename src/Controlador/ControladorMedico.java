@@ -14,6 +14,8 @@ import org.jfree.data.general.DefaultPieDataset;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
@@ -64,6 +66,9 @@ public class ControladorMedico extends JFrame {
 
             //Pestana Historico
             configurarEventosHistorico();
+
+            centrarComponentes();
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -635,6 +640,30 @@ public class ControladorMedico extends JFrame {
             }
         });
     }
+
+    public void centrarComponentes() {
+        JPanel panelcito= vista.getPanelcito();
+        panelcito.setLayout(new GridBagLayout()); // distribuye con grilla flexible
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = GridBagConstraints.RELATIVE; // cada componente en nueva fila
+        gbc.anchor = GridBagConstraints.CENTER;  // todo centrado
+        gbc.insets = new Insets(5, 5, 5, 5); // margen entre componentes
+
+        // Recorremos y volvemos a agregar los componentes ya existentes
+        Component[] comps = panelcito.getComponents();
+        panelcito.removeAll();
+        for (Component c : comps) {
+            panelcito.add(c, gbc);
+        }
+
+        panelcito.revalidate();
+        panelcito.repaint();
+    }
+
+
+
+
 
 }
 
