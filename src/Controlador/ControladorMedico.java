@@ -161,7 +161,7 @@ public class ControladorMedico extends JFrame {
                 Medicamento med = ctrlDet.getMedicamento();
 
                 if (nuevo != null && med != null) {
-                    hospi.getMedicamentos().insertarMedicamento(med); //
+                    hospi.getMedicamentos().insertarMedicamento(med);//
                     modificarTablaDashBoard();// Ahora sí, después de llenar
                     agregarMedicamentoATabla(nuevo);
                     modificarTablaMedicamentosHistorico();

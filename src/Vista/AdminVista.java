@@ -25,9 +25,9 @@ public class AdminVista extends JFrame {
     private JComboBox cmbMedicamento;
     private JButton btnGenerarRango;
     private JButton btnLimpiar;
-    private JPanel Medicamentos;
+    private JPanel Formarto;
     private JButton medicamentosButton;
-    private JPanel Recetas;
+    private JPanel graficoRecetaFormato;
     private JButton recetasButton;
     private JButton btnAgregarMesButton;
     private JButton btnQuitarMesButton;
@@ -121,6 +121,11 @@ public class AdminVista extends JFrame {
     private JLabel txtTelefonopaciente;
     private JTextField campoTelefonoPaciente;
     private JTextField campoFechaNacimiento;
+    private JScrollPane ScrollPaneDashBoard;
+    private JPanel GraficoMedicamento;
+    private JPanel graficoReceta;
+    private JScrollPane ScrollPaneHistoricoRecetas;
+    private JScrollPane ScrollPaneHistoricoMedicamentos;
     private DefaultTableModel modeloMedicos;
     private DefaultTableModel modeloFarmaceuticos;
     private DefaultTableModel modeloPacientes;
@@ -135,6 +140,9 @@ public class AdminVista extends JFrame {
         inicializarTablaMedicos();
         inicializarTablaFarmaceuticos();
         inicializarTablaPacientes();
+        inicializarTablaMEdicamentos();
+        btnAgregarMesButton = new JButton("Agregar Mes");
+        btnQuitarMesButton = new JButton("Quitar Mes");
     }
 
     private void inicializarTablaMedicos() {
@@ -182,6 +190,29 @@ public class AdminVista extends JFrame {
         TablaPacientes.setSelectionForeground(Color.BLACK); // color de texto al seleccionar
     }
 
+    private void inicializarTablaMEdicamentos(){
+        // Definir columnas (sin filas todavía)
+        String[] columnas = {"Codigo", "Nombre", "Presentacion"};
+        modeloMedicamentos = new DefaultTableModel(null, columnas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; //  evita edición directa en la vista
+            }
+        };
+        TablaMedicamento.setModel(modeloMedicamentos);
+
+        // Personalizar encabezado
+        JTableHeader header = TablaMedicamento.getTableHeader();
+        header.setFont(new Font("Arial", Font.BOLD, 17));
+        header.setReorderingAllowed(false); //  evitar que arrastren columnas
+
+        // Ajustes visuales de la tabla
+        TablaMedicamento.setRowHeight(25); // altura de filas
+        TablaMedicamento.setFont(new Font("Arial", Font.PLAIN, 15));
+        TablaMedicamento.setSelectionBackground(new Color(184, 207, 229)); // color al seleccionar
+        TablaMedicamento.setSelectionForeground(Color.BLACK); // color de texto al seleccionar
+    }
+
     //  Getters para que la controladora pueda acceder
     public JTable getTablaMedicos() {
         return TablaListado;
@@ -225,11 +256,11 @@ public class AdminVista extends JFrame {
     public JPanel getDatos() { return Datos; }
     public void setDatos(JPanel datos) { Datos = datos; }
 
-    public JPanel getMedicamentos() { return Medicamentos; }
-    public void setMedicamentos(JPanel medicamentos) { Medicamentos = medicamentos; }
+    public JPanel getMedicamentos() { return Formarto; }
+    public void setMedicamentos(JPanel medicamentos) { Formarto = medicamentos; }
 
-    public JPanel getRecetas() { return Recetas; }
-    public void setRecetas(JPanel recetas) { Recetas = recetas; }
+    public JPanel getRecetas() { return graficoRecetaFormato; }
+    public void setRecetas(JPanel recetas) { graficoRecetaFormato = recetas; }
 
     public JPanel getFormatoPanelMedico() { return FormatoPanelMedico; }
     public void setFormatoPanelMedico(JPanel formatoPanelMedico) { FormatoPanelMedico = formatoPanelMedico; }
@@ -399,6 +430,14 @@ public class AdminVista extends JFrame {
     public JTable getTablaMedicamento() { return TablaMedicamento; }
     public void setTablaMedicamento(JTable tablaMedicamento) { TablaMedicamento = tablaMedicamento; }
 
+    public JLabel getDesde() {
+        return Desde;
+    }
+
+    public void setDesde(JLabel desde) {
+        Desde = desde;
+    }
+
     //textfields
 
 
@@ -496,6 +535,112 @@ public class AdminVista extends JFrame {
     public void setModeloMedicamentos(DefaultTableModel modeloMedicamentos) { this.modeloMedicamentos = modeloMedicamentos; }
 
 
+    //dashboard
+
+
+    public JComboBox getCmbDesdeAnnio() {
+        return cmbDesdeAnnio;
+    }
+
+    public void setCmbDesdeAnnio(JComboBox cmbDesdeAnnio) {
+        this.cmbDesdeAnnio = cmbDesdeAnnio;
+    }
+
+    public JComboBox getCmbDesdeMes() {
+        return cmbDesdeMes;
+    }
+
+    public void setCmbDesdeMes(JComboBox cmbDesdeMes) {
+        this.cmbDesdeMes = cmbDesdeMes;
+    }
+
+    public JLabel getHasta() {
+        return Hasta;
+    }
+
+    public void setHasta(JLabel hasta) {
+        Hasta = hasta;
+    }
+
+    public JComboBox getCmbHastaAnio() {
+        return cmbHastaAnio;
+    }
+
+    public void setCmbHastaAnio(JComboBox cmbHastaAnio) {
+        this.cmbHastaAnio = cmbHastaAnio;
+    }
+
+    public JComboBox getCmbHastaMes() {
+        return cmbHastaMes;
+    }
+
+    public void setCmbHastaMes(JComboBox cmbHastaMes) {
+        this.cmbHastaMes = cmbHastaMes;
+    }
+
+    public JScrollPane getScrollTabla() {
+        return ScrollTabla;
+    }
+
+    public void setScrollTabla(JScrollPane scrollTabla) {
+        ScrollTabla = scrollTabla;
+    }
+
+    public JComboBox getCmbBuscarRecetasHistorico() {
+        return cmbBuscarRecetasHistorico;
+    }
+
+    public void setCmbBuscarRecetasHistorico(JComboBox cmbBuscarRecetasHistorico) {
+        this.cmbBuscarRecetasHistorico = cmbBuscarRecetasHistorico;
+    }
+
+    public JComboBox getCmbMedicamento() {
+        return cmbMedicamento;
+    }
+
+    public void setCmbMedicamento(JComboBox cmbMedicamento) {
+        this.cmbMedicamento = cmbMedicamento;
+    }
+
+    public JScrollPane getScrollPaneDashBoard() {
+        return ScrollPaneDashBoard;
+    }
+
+    public void setScrollPaneDashBoard(JScrollPane scrollPaneDashBoard) {
+        ScrollPaneDashBoard = scrollPaneDashBoard;
+    }
+
+    public JPanel getGraficoReceta() {
+        return graficoReceta;
+    }
+
+    public void setGraficoReceta(JPanel graficoReceta) {
+        this.graficoReceta = graficoReceta;
+    }
+
+    public JPanel getGraficoMedicamento() {
+        return GraficoMedicamento;
+    }
+
+    public void setGraficoMedicamento(JPanel graficoMedicamento) {
+        GraficoMedicamento = graficoMedicamento;
+    }
+
+    public JScrollPane getScrollPaneHistoricoRecetas() {
+        return ScrollPaneHistoricoRecetas;
+    }
+
+    public void setScrollPaneHistoricoRecetas(JScrollPane scrollPaneHistoricoRecetas) {
+        ScrollPaneHistoricoRecetas = scrollPaneHistoricoRecetas;
+    }
+
+    public JScrollPane getScrollPaneHistoricoMedicamentos() {
+        return ScrollPaneHistoricoMedicamentos;
+    }
+
+    public void setScrollPaneHistoricoMedicamentos(JScrollPane scrollPaneHistoricoMedicamentos) {
+        ScrollPaneHistoricoMedicamentos = scrollPaneHistoricoMedicamentos;
+    }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here

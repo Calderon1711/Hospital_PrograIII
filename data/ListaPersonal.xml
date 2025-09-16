@@ -3,76 +3,60 @@
     <persona tipo="Administrador">
         <id>adm001</id>
         <nombre>Laura González</nombre>
-        <clave>admin</clave>
+        <clave>adm001</clave>
         <rol>ADMINISTRADOR</rol>
     </persona>
-    
+    <persona tipo="Administrador">
+        <id>adm002</id>
+        <nombre>Roberto Pérez</nombre>
+        <clave>adm002</clave>
+        <rol>ADMINISTRADOR</rol>
+    </persona>
+    <persona tipo="Administrador">
+        <id>adm003</id>
+        <nombre>Clara Martínez</nombre>
+        <clave>adm003</clave>
+        <rol>ADMINISTRADOR</rol>
+    </persona>
+
     <persona tipo="Medico">
-        <id>11951444</id>
+        <id>med001</id>
         <nombre>Sebas</nombre>
-        <clave>132456</clave>
+        <clave>med001</clave>
         <rol>MEDICO</rol>
         <especialidad>Cirujano</especialidad>
     </persona>
-    
     <persona tipo="Medico">
-        <id>159635</id>
+        <id>med002</id>
         <nombre>Amparo</nombre>
-        <clave>22222</clave>
+        <clave>med002</clave>
         <rol>MEDICO</rol>
-        <especialidad>X</especialidad>
+        <especialidad>Pediatría</especialidad>
     </persona>
-    
     <persona tipo="Medico">
-        <id>151444</id>
+        <id>med003</id>
         <nombre>Fabiola</nombre>
-        <clave>33333</clave>
+        <clave>med003</clave>
         <rol>MEDICO</rol>
-        <especialidad>Y</especialidad>
+        <especialidad>Cardiología</especialidad>
     </persona>
-    
-    <persona tipo="Administrador">
-        <id>159951</id>
-        <nombre>Roberto</nombre>
-        <clave>4444</clave>
-        <rol>ADMINISTRADOR</rol>
-    </persona>
-    
+
     <persona tipo="Farmaceuta">
-        <id>147258</id>
-        <nombre>Sofia</nombre>
-        <clave>1236547899</clave>
+        <id>far001</id>
+        <nombre>Sofía</nombre>
+        <clave>far001</clave>
         <rol>FARMACEUTICO</rol>
     </persona>
-    
     <persona tipo="Farmaceuta">
-        <id>12</id>
-        <nombre>moni</nombre>
-        <clave>67</clave>
+        <id>far002</id>
+        <nombre>Moni</nombre>
+        <clave>far002</clave>
         <rol>FARMACEUTICO</rol>
     </persona>
-    
-    <persona tipo="Medico">
-        <id>676767</id>
-        <nombre>Sosa</nombre>
-        <clave>676767</clave>
-        <rol>MEDICO</rol>
-        <especialidad>crack</especialidad>
-    </persona>
-    
-    <persona tipo="Medico">
-        <id>123</id>
-        <nombre>Xavi</nombre>
-        <clave>123</clave>
-        <rol>MEDICO</rol>
-        <especialidad>sangre</especialidad>
-    </persona>
-    
     <persona tipo="Farmaceuta">
-        <id>456</id>
+        <id>far003</id>
         <nombre>Thamy</nombre>
-        <clave>456</clave>
+        <clave>far003</clave>
         <rol>FARMACEUTICO</rol>
     </persona>
-    
 </personal>
