@@ -42,12 +42,7 @@ public abstract class Personal {
 
     @Override
     public String toString() {
-        return "Personal{" + '\n' +
-                "nombre='" + nombre + '\'' + '\n' +
-                ", id='" + id + '\'' + '\n' +
-                ", clave='" + clave + '\'' + '\n' +
-                ", rol=" + rol + '\n' +
-                '}';
+        return nombre;
     }
 
 

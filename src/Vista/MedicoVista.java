@@ -274,13 +274,6 @@ public class MedicoVista extends JFrame {
         Opciones_Fecha_de_Retiro = opciones_Fecha_de_Retiro;
     }
 
-    public JTextField getFecha_de_Retiro() {
-        return Fecha_de_Retiro;
-    }
-
-    public void setFecha_de_Retiro(JTextField fecha_de_Retiro) {
-        Fecha_de_Retiro = fecha_de_Retiro;
-    }
 
     public JLabel getNombre_del_doctor() {
         return Nombre_del_doctor;
@@ -482,10 +475,14 @@ public class MedicoVista extends JFrame {
     private JPanel PanelPreescribir;
     private JScrollPane ScrollPaneMedicamentos;
 
+    public JLabel getFechaRetiro() {
+        return FechaRetiro;
+    }
 
-
-
-//=======================================================================
+    public void setFechaRetiro(JLabel fechaRetiro) {
+        FechaRetiro = fechaRetiro;
+    }
+    //=======================================================================
 
 
     //=======================================================================
@@ -498,6 +495,7 @@ public class MedicoVista extends JFrame {
     private JScrollPane ScrollPaneHistoricoMedicamentos;
     private JPanel GraficoMedicamento;
     private JPanel graficoReceta;
+    private JLabel FechaRetiro;
     private JScrollPane ScrollPanelMedicamentos;
     private JScrollPane ScrollPanelRecetas;
 

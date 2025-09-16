@@ -31,12 +31,6 @@ public class Medico extends Personal {
 
     @Override
     public String toString() {
-        return "Medico{" +
-                "nombre='" + nombre + '\'' +
-                ", especialidad='" + especialidad + '\'' +
-                ", id='" + id + '\'' +
-                ", clave='" + clave + '\'' +
-                ", rol=" + rol +
-                '}';
+        return nombre;
     }
 }
