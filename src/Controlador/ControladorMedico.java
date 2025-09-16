@@ -162,6 +162,7 @@ public class ControladorMedico extends JFrame {
 
                 if (nuevo != null && med != null) {
                     hospi.getMedicamentos().insertarMedicamento(med);//
+                    hospi.guardarMedicamentos();
                     modificarTablaDashBoard();// Ahora sí, después de llenar
                     agregarMedicamentoATabla(nuevo);
                     modificarTablaMedicamentosHistorico();
@@ -214,6 +215,7 @@ public class ControladorMedico extends JFrame {
 
             Medicamento med = hospi.getMedicamentos().buscarPorNombreYPresentacion(nombre, presentacion);
             if (med == null) {
+                System.out.println(med.toString());
                 JOptionPane.showMessageDialog(vista, "El medicamento seleccionado no existe en el sistema.");
                 return;
             }
@@ -230,7 +232,6 @@ public class ControladorMedico extends JFrame {
             if (texto != null && texto.length() >= 10) {
                 DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 fechaRetiro = LocalDate.parse(texto.substring(0, 10), formato);
-                // Ya tienes la fecha como LocalDate
             } else {
                 JOptionPane.showMessageDialog(vista, "La fecha de retiro no está definida correctamente.");
                 return;

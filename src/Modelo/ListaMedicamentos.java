@@ -115,7 +115,7 @@ public class ListaMedicamentos {
 
     public Medicamento buscarPorNombreYPresentacion(String nombre, String presentacion) {
         for(Medicamento med : medicamentos){
-            if(med.getNombre().equalsIgnoreCase(nombre) && med.getPresentacion().equalsIgnoreCase(presentacion)){
+            if(med.getNombre().equalsIgnoreCase(nombre) && med.getPresentacion().equalsIgnoreCase(presentacion)&& med.getCodigo().equalsIgnoreCase(med.getCodigo())){
                 return med;
             }
         }

@@ -331,7 +331,7 @@
                 </constraints>
                 <properties>
                   <icon value="Imagenes_Luis/agregar.png"/>
-                  <text value="btnAgregarMes"/>
+                  <text value="AgregarFila"/>
                 </properties>
               </component>
               <component id="a7ddb" class="javax.swing.JButton" binding="btnQuitarMesButton" default-binding="true">
@@ -340,7 +340,7 @@
                 </constraints>
                 <properties>
                   <icon value="Imagenes_Luis/borrar.png"/>
-                  <text value="btnQuitarMes"/>
+                  <text value="QuitarFila"/>
                 </properties>
               </component>
               <scrollpane id="346f0" binding="ScrollPaneDashBoard">
