@@ -7,6 +7,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class ControladoraAdmin implements ActionListener {
     private AdminVista vista;
@@ -37,9 +40,13 @@ public class ControladoraAdmin implements ActionListener {
         vista.getReporteMedicamento().addActionListener(this);
 
         vista.getBotonBuscar().addActionListener(this);
+        vista.getBtnGuardarPaciente().addActionListener(this);
+        vista.getBtnLimpiar().addActionListener(this);
+        vista.getBorrarPAciente().addActionListener(this);
 
         actualizarTablaMedicos();
-        actualizarTablaMedicos();
+        actualizarTablaFarma();
+        actualizarTablaPaciente();
     }
 
     @Override
@@ -77,8 +84,21 @@ public class ControladoraAdmin implements ActionListener {
             reporteFarma();
             actualizarTablaMedicos();
         }
-/*
-        // ==== Medicamentos ====
+
+        // ==== Pacientes ====
+          else if (source == vista.getBtnGuardarPaciente()) {
+            guardarPaciente();
+            hospi.guardarPacientes();
+        } else if (source == vista.getBtnLimpiarPaciente()) {
+            limpiarPaciente();
+        } else if (source == vista.getBorrarPAciente()) {
+            borrarPaciente();
+            hospi.guardarPacientes();
+        } else if (source == vista.getBotonBuscarPaciente()) {
+            buscarPaciente();
+        }
+            /*
+             // ==== Medicamentos ====
         else if (source == vista.getBtnGuardarMedicamento()) {
             guardarMedicamento();
         } else if (source == vista.getBoton_LimpiarMedicamento()) {
@@ -90,11 +110,8 @@ public class ControladoraAdmin implements ActionListener {
         } else if (source == vista.getReporteMedicamento()) {
             reporteMedicamento();
         }
+        */
 
-        // ==== Pacientes ====
-        else if (source == vista.getBotonBuscar()) {
-            buscarPaciente();
-        }*/
     }
 
     private void guardarMedico() {
@@ -300,6 +317,121 @@ public class ControladoraAdmin implements ActionListener {
             JOptionPane.showMessageDialog(null, "Seleccione un Farmaceuta de la tabla para generar reporte.");
         }
     }
+//=============================================Logica PAciente============================
+
+    private void guardarPaciente() {
+        String id = vista.getCampoIdPAciente().getText();
+        String nombre = vista.getCampoNombrePaciente().getText();
+        String fechaStr = vista.getCampoFechaNacimiento().getText();
+        LocalDate fechaNacimiento = null;
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        try {
+            fechaNacimiento = LocalDate.parse(fechaStr, formato);
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(null,
+                    "La fecha debe tener formato yyyy-MM-dd",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return; // salir o manejar error
+        }
+
+        String telStr = vista.getCampoTelefonoPaciente().getText();
+        int telefono = 0;
+        try {
+            telefono = Integer.parseInt(telStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null,
+                    "El teléfono debe ser un número",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return; // salir o manejar error
+        }
+
+
+        if (id.isEmpty() || nombre.isEmpty() || fechaNacimiento==null||telefono==0) {
+            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+            return;
+        }
+
+        Paciente paciente = new Paciente(telefono,fechaNacimiento,nombre,id);
+        boolean verificador = hospi.getPacientes().existeAlguienConEseID(paciente.getId());
+        if( hospi.getPacientes().insertarPaciente(paciente,verificador)==true) {
+            JOptionPane.showMessageDialog(null, "Paciente guardado correctamente.");
+        }else{
+            JOptionPane.showMessageDialog(null, "Paciente No se puede guardar.");
+        }
+
+        limpiarPaciente();
+        actualizarTablaPaciente();
+    }
+
+    private void limpiarPaciente() {
+    vista.getCampoIdPAciente().setText("");
+    vista.getCampoNombrePaciente().setText("");
+    vista.getCampoFechaNacimiento().setText("");
+    vista.getCampoTelefonoPaciente().setText("");
+    }
+
+    private void borrarPaciente() {
+        int fila = vista.getTablaPacientes().getSelectedRow();
+        if (fila >= 0) {
+            String id = (String) vista.getTablaPacientes().getValueAt(fila, 0);
+            hospi.getPacientes().eliminar(id);
+            actualizarTablaPaciente();
+            JOptionPane.showMessageDialog(null, "Paciente eliminado.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un paciente para borrar.");
+        }
+    }
+
+    private void actualizarTablaPaciente() {
+        DefaultTableModel tableModel = vista.getModeloPacientes();
+        tableModel.setRowCount(0); // Limpiamos la tabla
+
+        // Recorremos la lista de pacientes
+        for (Paciente p : hospi.getPacientes().getPacientes()) {
+            tableModel.addRow(new Object[]{
+                    p.getId(),
+                    p.getNombre(),
+                    p.getFechaNacimiento(),
+                    p.getTelefono()
+            });
+        }
+    }
+
+
+    private void buscarPaciente() {
+        String nombre = vista.getCampoBuscarPaciente().getText().trim();
+
+        if (nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese un nombre para buscar.");
+            return;
+        }
+
+        DefaultTableModel modelo = vista.getModeloPacientes();
+        modelo.setRowCount(0); // limpiar tabla
+
+        boolean encontrado = false;
+
+        for (Paciente p : hospi.getPacientes().getPacientes()) {
+            if (p.getNombre().equalsIgnoreCase(nombre)) {
+                modelo.addRow(new Object[]{
+                        p.getId(),
+                        p.getNombre(),
+                        p.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                        p.getTelefono(),
+                });
+                encontrado = true;
+            }
+        }
+
+        if (!encontrado) {
+            JOptionPane.showMessageDialog(null, "No se encontró un paciente con ese nombre.");
+        }
+    }
+
+
 
 
 }

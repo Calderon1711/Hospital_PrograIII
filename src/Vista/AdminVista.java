@@ -77,8 +77,8 @@ public class AdminVista extends JFrame {
     private JLabel TextoListadoPaciente;
     private JLabel TextoPacientes;
     private JLabel BuscarTexto;
-    private JTextField textField6;
-    private JButton BotonBuscar;
+    private JTextField campoBuscarPaciente;
+    private JButton BotonBuscarPaciente;
     private JPanel PanelInsertarFarma;
     private JPanel PanelBusquedaFarma;
     private JPanel PanelTablaFarma;
@@ -110,6 +110,17 @@ public class AdminVista extends JFrame {
     private JLabel NombreFarmatxt;
     private JLabel LIstadoFarmatxt;
     private JTextField campoBusquedaFarma;
+    private JLabel TxtIDPAciente;
+    private JTextField CampoIdPAciente;
+    private JLabel txtNombrePaciente;
+    private JTextField campoNombrePaciente;
+    private JButton btnGuardarPaciente;
+    private JButton btnLimpiarPaciente;
+    private JButton BorrarPAciente;
+    private JLabel txtFechaPaciente;
+    private JLabel txtTelefonopaciente;
+    private JTextField campoTelefonoPaciente;
+    private JTextField campoFechaNacimiento;
     private DefaultTableModel modeloMedicos;
     private DefaultTableModel modeloFarmaceuticos;
     private DefaultTableModel modeloPacientes;
@@ -263,6 +274,40 @@ public class AdminVista extends JFrame {
     public void setPanelTablaMedicamentos(JPanel panelTablaMedicamentos) { PanelTablaMedicamentos = panelTablaMedicamentos; }
 
     //botones
+
+
+    public JButton getBotonBuscarPaciente() {
+        return BotonBuscarPaciente;
+    }
+
+    public void setBotonBuscarPaciente(JButton botonBuscarPaciente) {
+        BotonBuscarPaciente = botonBuscarPaciente;
+    }
+
+    public JButton getBorrarPAciente() {
+        return BorrarPAciente;
+    }
+
+    public void setBorrarPAciente(JButton borrarPAciente) {
+        BorrarPAciente = borrarPAciente;
+    }
+
+    public JButton getBtnLimpiarPaciente() {
+        return btnLimpiarPaciente;
+    }
+
+    public void setBtnLimpiarPaciente(JButton btnLimpiarPaciente) {
+        this.btnLimpiarPaciente = btnLimpiarPaciente;
+    }
+
+    public JButton getBtnGuardarPaciente() {
+        return btnGuardarPaciente;
+    }
+
+    public void setBtnGuardarPaciente(JButton btnGuardarPaciente) {
+        this.btnGuardarPaciente = btnGuardarPaciente;
+    }
+
     public JButton getBtnGenerarRango() { return btnGenerarRango; }
     public void setBtnGenerarRango(JButton btnGenerarRango) { this.btnGenerarRango = btnGenerarRango; }
 
@@ -314,8 +359,8 @@ public class AdminVista extends JFrame {
     public JButton getReporteButton() { return reporteButton; }
     public void setReporteButton(JButton reporteButton) { this.reporteButton = reporteButton; }
 
-    public JButton getBotonBuscar() { return BotonBuscar; }
-    public void setBotonBuscar(JButton botonBuscar) { BotonBuscar = botonBuscar; }
+    public JButton getBotonBuscar() { return BotonBuscarPaciente; }
+    public void setBotonBuscar(JButton botonBuscar) { BotonBuscarPaciente = botonBuscar; }
 
     public JButton getBoton_LimpiarMedicamento() { return Boton_LimpiarMedicamento; }
     public void setBoton_LimpiarMedicamento(JButton boton_LimpiarMedicamento) { Boton_LimpiarMedicamento = boton_LimpiarMedicamento; }
@@ -357,6 +402,22 @@ public class AdminVista extends JFrame {
     //textfields
 
 
+    public JTextField getCampoBuscarPaciente() {
+        return campoBuscarPaciente;
+    }
+
+    public void setCampoBuscarPaciente(JTextField campoBuscarPaciente) {
+        this.campoBuscarPaciente = campoBuscarPaciente;
+    }
+
+    public JTextField getCampoIdPAciente() {
+        return CampoIdPAciente;
+    }
+
+    public void setCampoIdPAciente(JTextField campoIdPAciente) {
+        CampoIdPAciente = campoIdPAciente;
+    }
+
     public JTextField getCampoBusquedaFarma() {
         return campoBusquedaFarma;
     }
@@ -397,6 +458,30 @@ public class AdminVista extends JFrame {
     public JTextField getCampoNombreMEdicamento() { return CampoNombreMEdicamento; }
     public void setCampoNombreMEdicamento(JTextField campoNombreMEdicamento) { CampoNombreMEdicamento = campoNombreMEdicamento; }
 
+    public JTextField getCampoFechaNacimiento() {
+        return campoFechaNacimiento;
+    }
+
+    public void setCampoFechaNacimiento(JTextField campoFechaNacimiento) {
+        this.campoFechaNacimiento = campoFechaNacimiento;
+    }
+
+    public JTextField getCampoTelefonoPaciente() {
+        return campoTelefonoPaciente;
+    }
+
+    public void setCampoTelefonoPaciente(JTextField campoTelefonoPaciente) {
+        this.campoTelefonoPaciente = campoTelefonoPaciente;
+    }
+
+    public JTextField getCampoNombrePaciente() {
+        return campoNombrePaciente;
+    }
+
+    public void setCampoNombrePaciente(JTextField campoNombrePaciente) {
+        this.campoNombrePaciente = campoNombrePaciente;
+    }
+
     //modelos
 
     public void setModeloMedicos(DefaultTableModel modeloMedicos) { this.modeloMedicos = modeloMedicos; }
@@ -409,6 +494,7 @@ public class AdminVista extends JFrame {
 
     public DefaultTableModel getModeloMedicamentos() { return modeloMedicamentos; }
     public void setModeloMedicamentos(DefaultTableModel modeloMedicamentos) { this.modeloMedicamentos = modeloMedicamentos; }
+
 
 
     private void createUIComponents() {

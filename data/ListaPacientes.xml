@@ -21,4 +21,11 @@
         <telefono>70599270</telefono>
     </paciente>
     
+    <paciente>
+        <id>123</id>
+        <nombre>Fabriela</nombre>
+        <fechaNacimiento>2005-01-25</fechaNacimiento>
+        <telefono>1354812385</telefono>
+    </paciente>
+    
 </pacientes>
